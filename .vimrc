@@ -1,5 +1,4 @@
 syntax enable
-colorscheme desert 
 
 let mapleader = ","
 let g:airline#extensions#tabline#enabled = 1
@@ -18,6 +17,8 @@ set smartcase
 set showcmd
 
 call plug#begin()
+Plug 'easymotion/vim-easymotion'
+Plug 'airblade/vim-gitgutter'
 Plug 'scrooloose/nerdtree'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
