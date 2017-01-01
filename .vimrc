@@ -1,6 +1,9 @@
 syntax enable
 colorscheme desert 
+
 let mapleader = ","
+let g:airline#extensions#tabline#enabled = 1
+
 set backspace=indent,eol,start
 set hlsearch
 set nocompatible
@@ -13,10 +16,8 @@ set number
 set ignorecase
 set smartcase
 set showcmd
-set t_CO=256
-let g:airline#extensions#tabline#enabled = 1
-call plug#begin()
 
+call plug#begin()
 Plug 'scrooloose/nerdtree'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
