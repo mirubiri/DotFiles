@@ -52,7 +52,7 @@ export ZSH=/Users/Alex/.oh-my-zsh
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 
-plugins=(brew colorize colored-man-pages bundler alias-tips git z)
+plugins=(brew jira colorize colored-man-pages bundler alias-tips git z)
 
 source $ZSH/oh-my-zsh.sh
 
