@@ -52,8 +52,9 @@ COMPLETION_WAITING_DOTS="true"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 
-plugins=(brew jira colorize colored-man-pages bundler alias-tips git z)
+plugins=(zsh-completions zsh-syntax-highlighting zsh-autosuggestions brew jira colorize colored-man-pages bundler alias-tips git z)
 
+autoload -U compinit && compinit
 source $ZSH/oh-my-zsh.sh
 
 export PATH="/usr/local/sbin:$PATH"
@@ -65,10 +66,6 @@ export JIRA_PREFIX="PFM-"
 export JIRA_RAPID_BOARD=false
 export JIRA_DEFAULT_ACTION="assigned"
 # end of jira
-
-source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
-source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-fpath=(/usr/local/share/zsh-completions $fpath)
 
 eval "$(rbenv init -)"
 
