@@ -101,4 +101,8 @@ eval "$(rbenv init -)"
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
+chpwd() {
+  ls
+}
+
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
