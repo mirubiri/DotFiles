@@ -54,7 +54,7 @@ COMPLETION_WAITING_DOTS="true"
 
 plugins=(zsh-completions zsh-syntax-highlighting zsh-autosuggestions brew jira colorize colored-man-pages bundler alias-tips git z)
 
-autoload -U compinit && compinit
+autoload -U compinit -u  && compinit -u
 source $ZSH/oh-my-zsh.sh
 
 export PATH="/usr/local/sbin:$PATH"
