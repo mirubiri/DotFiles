@@ -15,7 +15,7 @@ set number
 set ignorecase
 set smartcase
 set showcmd
-
+set laststatus=2
 call plug#begin()
 Plug 'easymotion/vim-easymotion'
 Plug 'airblade/vim-gitgutter'
