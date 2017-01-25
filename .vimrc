@@ -1,5 +1,4 @@
 syntax enable
-
 let mapleader = ","
 let g:airline#extensions#tabline#enabled = 1
 
@@ -16,6 +15,7 @@ set ignorecase
 set smartcase
 set showcmd
 set laststatus=2
+
 call plug#begin()
 Plug 'majutsushi/tagbar'
 Plug 'kien/ctrlp.vim'
@@ -31,6 +31,7 @@ Plug 'tpope/vim-endwise'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'jremmen/vim-ripgrep'
+Plug 'sheerun/vim-polyglot'
 call plug#end()
 
 augroup autosourcing
