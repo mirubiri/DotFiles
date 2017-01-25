@@ -17,6 +17,8 @@ set smartcase
 set showcmd
 set laststatus=2
 call plug#begin()
+Plug 'majutsushi/tagbar'
+Plug 'kien/ctrlp.vim'
 Plug 'easymotion/vim-easymotion'
 Plug 'airblade/vim-gitgutter'
 Plug 'scrooloose/nerdtree'
@@ -28,8 +30,6 @@ Plug 'tpope/vim-rails'
 Plug 'tpope/vim-endwise'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all'  }
-Plug 'junegunn/fzf.vim'
 Plug 'jremmen/vim-ripgrep'
 call plug#end()
 
