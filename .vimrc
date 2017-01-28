@@ -1,29 +1,29 @@
 
 "-- Plugins --
 call plug#begin()
-Plug 'sjl/badwolf'
-Plug 'sjl/gundo.vim'
-Plug 'majutsushi/tagbar'
-Plug 'kien/ctrlp.vim'
-Plug 'easymotion/vim-easymotion'
-Plug 'airblade/vim-gitgutter'
-Plug 'scrooloose/nerdtree'
-Plug 'tpope/vim-fugitive'
-Plug 'tpope/vim-surround'
-Plug 'jiangmiao/auto-pairs'
-Plug 'rizzatti/dash.vim'
-Plug 'tpope/vim-rails'
-Plug 'tpope/vim-endwise'
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
-Plug 'jremmen/vim-ripgrep'
-Plug 'sheerun/vim-polyglot'
+Plug 'sjl/badwolf' "color scheme
+Plug 'sjl/gundo.vim' "show undo tree
+Plug 'majutsushi/tagbar' "show tag bar
+Plug 'kien/ctrlp.vim' "fuzzy file search
+Plug 'easymotion/vim-easymotion' "move to anywhere
+Plug 'airblade/vim-gitgutter' "show file changes through git
+Plug 'scrooloose/nerdtree' "show folder tree
+Plug 'tpope/vim-fugitive' "git shortcuts and commands
+Plug 'tpope/vim-surround' "manipulate surround characters
+Plug 'jiangmiao/auto-pairs' "autopair surround characters while typing
+Plug 'rizzatti/dash.vim' "provides shortcuts to open Dash
+Plug 'tpope/vim-rails' "Rails useful commands
+Plug 'tpope/vim-endwise' "Autopairs do..end
+Plug 'vim-airline/vim-airline' "show bottom bar
+Plug 'vim-airline/vim-airline-themes' "themes for the bottom bar
+Plug 'jremmen/vim-ripgrep' "fuzzy search inside files
+Plug 'sheerun/vim-polyglot' "syntax hihglighting for many languages
 call plug#end()
 "--
 
 "-- Colors --
-syntax enable
-colorscheme badwolf
+syntax enable "Enable syntax highlighting
+colorscheme badwolf "Good looking color scheme
 "--
 
 let g:airline#extensions#tabline#enabled = 1
@@ -80,7 +80,9 @@ nmap <Leader>w :w<cr>
 nmap <Leader>wq :wq<cr>
 nmap <Leader>q :q!<cr>
 nmap <Leader>ev :tabedit $MYVIMRC<cr>
-
+nmap <Leader><Space> :TagbarToggle<cr>
+nmap <Leader>p :CtrlP<cr>
+"
 
 augroup autosourcing
   autocmd!
