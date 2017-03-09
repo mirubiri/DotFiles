@@ -7,7 +7,7 @@ Plug 'majutsushi/tagbar' "show tag bar
 Plug 'easymotion/vim-easymotion' "move to anywhere
 Plug 'airblade/vim-gitgutter' "show file changes through git
 Plug 'scrooloose/nerdtree' "show folder tree
-Plug 'rking/ag.vim'
+Plug 'mileszs/ack.vim'
 Plug '/usr/local/opt/fzf' | Plug 'junegunn/fzf.vim'
 Plug 'tpope/vim-fugitive' "git shortcuts and commands
 Plug 'tpope/vim-surround' "manipulate surround characters
@@ -17,7 +17,6 @@ Plug 'tpope/vim-rails' "Rails useful commands
 Plug 'tpope/vim-endwise' "Autopairs do..end
 Plug 'vim-airline/vim-airline' "show bottom bar
 Plug 'vim-airline/vim-airline-themes' "themes for the bottom bar
-Plug 'jremmen/vim-ripgrep' "fuzzy search inside files
 Plug 'sheerun/vim-polyglot' "syntax hihglighting for many languages
 call plug#end()
 "--
@@ -78,6 +77,7 @@ set laststatus=2
 "-- Searching --
 set incsearch "search as characters are entered"
 set hlsearch "highlight matches"
+let g:ackprg = 'ag --vimgrep'
 "
 
 "-- Folding--
@@ -104,7 +104,6 @@ nmap <Leader>q :q!<cr>
 nmap <Leader>ev :tabedit $MYVIMRC<cr>
 nmap <Leader><Space> :TagbarToggle<cr>
 nmap <Leader>p :Files<cr>
-nmap <Leader>f :Rg<cr>
 
 augroup autosourcing
   autocmd!
