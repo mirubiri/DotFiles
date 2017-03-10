@@ -1,6 +1,7 @@
 
 "-- Plugins --
 call plug#begin()
+Plug 'ctrlpvim/ctrlp.vim'
 Plug 'sjl/badwolf' "color scheme
 Plug 'sjl/gundo.vim' "show undo tree
 Plug 'majutsushi/tagbar' "show tag bar
@@ -8,7 +9,6 @@ Plug 'easymotion/vim-easymotion' "move to anywhere
 Plug 'airblade/vim-gitgutter' "show file changes through git
 Plug 'scrooloose/nerdtree' "show folder tree
 Plug 'mileszs/ack.vim'
-Plug '/usr/local/opt/fzf' | Plug 'junegunn/fzf.vim'
 Plug 'tpope/vim-fugitive' "git shortcuts and commands
 Plug 'tpope/vim-surround' "manipulate surround characters
 Plug 'jiangmiao/auto-pairs' "autopair surround characters while typing
@@ -24,23 +24,6 @@ call plug#end()
 "-- TagBar Plugin
 let g:tagbar_autofocus=1
 let g:tagbar_compact=1
-"
-
-"-- FZF Plugin --
-"Match colorscheme colors
-let g:fzf_colors =
-\ { 'fg':      ['fg', 'Normal'],
-  \ 'bg':      ['bg', 'Normal'],
-  \ 'hl':      ['fg', 'Comment'],
-  \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
-  \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
-  \ 'hl+':     ['fg', 'Statement'],
-  \ 'info':    ['fg', 'PreProc'],
-  \ 'prompt':  ['fg', 'Conditional'],
-  \ 'pointer': ['fg', 'Exception'],
-  \ 'marker':  ['fg', 'Keyword'],
-  \ 'spinner': ['fg', 'Label'],
-  \ 'header':  ['fg', 'Comment'] }
 "
 
 "-- Colors --
