@@ -5,8 +5,6 @@ Pry.commands.alias_command 's', 'step'
 Pry.commands.alias_command 'n', 'next'
 Pry.commands.alias_command 'f', 'finish'
 
-require 'hirb'
-
 Pry::Commands.block_command('enable-pry', 'Enable `binding.pry` feature') do
   ENV['DISABLE_PRY'] = nil
 end
