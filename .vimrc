@@ -2,6 +2,7 @@
 "-- Plugins --
 call plug#begin()
 Plug 'ctrlpvim/ctrlp.vim'
+Plug 'felikz/ctrlp-py-matcher'
 Plug 'sjl/badwolf' "color scheme
 Plug 'sjl/gundo.vim' "show undo tree
 Plug 'majutsushi/tagbar' "show tag bar
@@ -30,9 +31,25 @@ let g:tagbar_compact=1
 syntax enable "Enable syntax highlighting
 colorscheme badwolf "Good looking color scheme
 "--
+if !has('python')
+  echo 'In order to use pymatcher plugin, you need +python compiled vim'
+else
+  let g:ctrlp_match_func = { 'match': 'pymatcher#PyMatch' }
+endif
+
+
+" Set no file limit, we are building a big project
+let g:ctrlp_max_files = 0
+
+" If ag is available use it as filename list generator instead of 'find'
+"if executable("ag")
+"   set grepprg=ag\ --nogroup\ --nocolor
+   "let g:ctrlp_user_command = 'ag %s -i --nocolor --nogroup --ignore ''.git'' --ignore ''.DS_Store'' --ignore ''node_modules'' --hidden -g ""'
+
+	 "endif
+
 
 let g:airline#extensions#tabline#enabled = 1
-
 set backspace=indent,eol,start
 set nocompatible
 set autoindent
@@ -46,7 +63,7 @@ set tabstop=2
 set softtabstop=2
 set shiftwidth=2
 
-
+let g:ctrlp_max_files = 0
 "-- UI Config --
 set number "show line numbers
 set showcmd "show command in bottom bar
@@ -86,7 +103,6 @@ nmap <Leader>wq :wq<cr>
 nmap <Leader>q :q!<cr>
 nmap <Leader>ev :tabedit $MYVIMRC<cr>
 nmap <Leader><Space> :TagbarToggle<cr>
-nmap <Leader>p :Files<cr>
 
 augroup autosourcing
   autocmd!
