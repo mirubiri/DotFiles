@@ -57,8 +57,6 @@ plugins=(zsh-completions zsh-syntax-highlighting zsh-autosuggestions brew jira c
 autoload -U compinit -u  && compinit -u
 source $ZSH/oh-my-zsh.sh
 
-export PATH="/usr/local/sbin:$PATH"
-
 # jira plugin variables
 export JIRA_URL="http://jira.platform161.com"
 export JIRA_NAME="alejandro.arrufat"
