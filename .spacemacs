@@ -36,19 +36,23 @@ values."
      ;; Uncomment some layer names and press <SPC f e R> (Vim style) or
      ;; <M-m f e R> (Emacs style) to install them.
      ;; ----------------------------------------------------------------
-     elm
+     ;;elm
      auto-completion
      emacs-lisp
      git
-     markdown
-     org
+     ;markdown
+     ;org
+     ;spell-checking
+
      (shell :variables
             shell-default-height 30
             shell-default-position 'bottom)
-     spell-checking
      syntax-checking
-     solarized-theme
-     version-control
+     (version-control :variables
+                      version-control-diff-tool 'diff-hl
+                      version-control-diff-side 'right
+                      version-control-global-margin 't
+                      )
      html
      ruby
      ruby-on-rails
