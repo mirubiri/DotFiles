@@ -337,6 +337,12 @@ you should place your code here."
   (setq jiralib-url "https://jira.platform161.com")
   (setq helm-ag-base-command "rg --no-heading")
   (setq evil-move-cursor-back nil)
+
+  ;; Make evil-mode up/down operate in screen lines instead of logical lines
+  (define-key evil-motion-state-map "j" 'evil-next-visual-line)
+  (define-key evil-motion-state-map "k" 'evil-previous-visual-line)
+  (define-key evil-visual-state-map "j" 'evil-next-visual-line)
+  (define-key evil-visual-state-map "k" 'evil-previous-visual-line)
 )
 ;; Do not write anything past this comment. This is where Emacs will
 ;; auto-generate custom variable definitions.
