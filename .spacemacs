@@ -336,6 +336,7 @@ you should place your code here."
   (setq diff-hl-flydiff-mode '(:global t))
   (setq jiralib-url "https://jira.platform161.com")
   (setq helm-ag-base-command "rg --no-heading")
+  (setq evil-move-cursor-back nil)
 )
 ;; Do not write anything past this comment. This is where Emacs will
 ;; auto-generate custom variable definitions.
