@@ -334,7 +334,7 @@ you should place your code here."
   (setq neo-theme 'icons)
   (setq powerline-default-separator 'alternate)
   (spacemacs/toggle-indent-guide-globally-on)
-  ;;(setq diff-hl-flydiff-mode '(:global t))
+  (setq diff-hl-flydiff-mode '(:global t))
   (setq jiralib-url "https://jira.platform161.com")
   (setq helm-ag-base-command "rg --no-heading")
 
