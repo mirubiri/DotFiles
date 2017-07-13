@@ -338,9 +338,13 @@ you should place your code here."
   (setq jiralib-url "https://jira.platform161.com")
   (setq helm-ag-base-command "rg --no-heading")
 
+  ;; Key Bindings
   ;; Drag lines up and down
-  (global-set-key (kbd "s-<down>") 'drag-stuff-down)
-  (global-set-key (kbd "s-<up>") 'drag-stuff-up)
+
+  (define-key evil-normal-state-map (kbd "s-k") 'drag-stuff-up)
+  (define-key evil-normal-state-map (kbd "s-j") 'drag-stuff-down)
+  (define-key evil-normal-state-map (kbd "s-<up>") 'drag-stuff-up)
+  (define-key evil-normal-state-map (kbd "s-<down>") 'drag-stuff-down)
 
   ;; Make evil-mode up/down operate in screen lines instead of logical lines
   (define-key evil-motion-state-map "j" 'evil-next-visual-line)
