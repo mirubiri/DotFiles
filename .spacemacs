@@ -337,19 +337,19 @@ you should place your code here."
   (setq diff-hl-flydiff-mode '(:global t))
   (setq jiralib-url "https://jira.platform161.com")
   (setq helm-ag-base-command "rg --no-heading")
-  (setq evil-move-cursor-back nil)
 
   (setq evil-move-cursor-back nil)
 
   ;; Key Bindings
   ;; Drag lines up and down
-
   (define-key evil-normal-state-map (kbd "s-k") 'drag-stuff-up)
   (define-key evil-normal-state-map (kbd "s-j") 'drag-stuff-down)
   (define-key evil-normal-state-map (kbd "s-<up>") 'drag-stuff-up)
   (define-key evil-normal-state-map (kbd "s-<down>") 'drag-stuff-down)
 
+  ;; Assign toggle fold to tab key in normal mode
   (define-key evil-normal-state-map (kbd "TAB") 'origami-toggle-node)
+
   ;; Make evil-mode up/down operate in screen lines instead of logical lines
   (define-key evil-motion-state-map "j" 'evil-next-visual-line)
   (define-key evil-motion-state-map "k" 'evil-previous-visual-line)
