@@ -339,9 +339,15 @@ you should place your code here."
   (setq helm-ag-base-command "rg --no-heading")
   (setq evil-move-cursor-back nil)
 
+  (setq evil-move-cursor-back nil)
+
+  ;; Key Bindings
   ;; Drag lines up and down
-  (global-set-key (kbd "s-<down>") 'drag-stuff-down)
-  (global-set-key (kbd "s-<up>") 'drag-stuff-up)
+
+  (define-key evil-normal-state-map (kbd "s-k") 'drag-stuff-up)
+  (define-key evil-normal-state-map (kbd "s-j") 'drag-stuff-down)
+  (define-key evil-normal-state-map (kbd "s-<up>") 'drag-stuff-up)
+  (define-key evil-normal-state-map (kbd "s-<down>") 'drag-stuff-down)
 
   (define-key evil-normal-state-map (kbd "TAB") 'origami-toggle-node)
   ;; Make evil-mode up/down operate in screen lines instead of logical lines
