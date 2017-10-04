@@ -330,6 +330,10 @@ layers configuration.
 This is the place where most of your configurations should be done. Unless it is
 explicitly specified that a variable should be set before a package is loaded,
 you should place your code here."
+
+  ;; Solves a book with helm bookmarks, remove when master is updated
+  (require 'helm-bookmark)
+
   (setq neo-autorefresh nil)
   (setq neo-theme 'icons)
   (setq powerline-default-separator 'alternate)
@@ -343,6 +347,9 @@ you should place your code here."
   (define-key evil-normal-state-map (kbd "s-j") 'drag-stuff-down)
   (define-key evil-normal-state-map (kbd "s-<up>") 'drag-stuff-up)
   (define-key evil-normal-state-map (kbd "s-<down>") 'drag-stuff-down)
+
+  ;; Assign toggle fold to tab key in normal mode
+  (define-key evil-normal-state-map (kbd "TAB") 'origami-toggle-node)
 
   ;; Make evil-mode up/down operate in screen lines instead of logical lines
   (define-key evil-motion-state-map "j" 'evil-next-visual-line)
