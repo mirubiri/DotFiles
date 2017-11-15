@@ -52,18 +52,10 @@ COMPLETION_WAITING_DOTS="true"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 
-plugins=(zsh-completions zsh-syntax-highlighting zsh-autosuggestions brew jira colorize colored-man-pages bundler alias-tips git z)
+plugins=(zsh-completions zsh-syntax-highlighting zsh-autosuggestions brew colored-man-pages bundler alias-tips git z)
 
 autoload -U compinit -u  && compinit -u
 source $ZSH/oh-my-zsh.sh
-
-# jira plugin variables
-export JIRA_URL="http://jira.platform161.com"
-export JIRA_NAME="alejandro.arrufat"
-export JIRA_PREFIX="PFM-"
-export JIRA_RAPID_BOARD=false
-export JIRA_DEFAULT_ACTION="assigned"
-# end of jira
 
 eval "$(rbenv init -)"
 
@@ -100,5 +92,7 @@ chpwd() {
   ls
 }
 
+export NVM_DIR="$HOME/.nvm"
+. "/usr/local/opt/nvm/nvm.sh"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
