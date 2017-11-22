@@ -57,8 +57,6 @@ plugins=(zsh-completions zsh-syntax-highlighting zsh-autosuggestions brew colore
 autoload -U compinit -u  && compinit -u
 source $ZSH/oh-my-zsh.sh
 
-eval "$(rbenv init -)"
-
 # User configuration
 
 # export MANPATH="/usr/local/man:$MANPATH"
@@ -96,3 +94,6 @@ export NVM_DIR="$HOME/.nvm"
 . "/usr/local/opt/nvm/nvm.sh"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
+export PATH="$PATH:$HOME/.rvm/bin"
