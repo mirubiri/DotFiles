@@ -54,9 +54,6 @@ COMPLETION_WAITING_DOTS="true"
 
 plugins=(zsh-completions zsh-syntax-highlighting zsh-autosuggestions brew colored-man-pages bundler alias-tips git z)
 
-autoload -U compinit -u  && compinit -u
-source $ZSH/oh-my-zsh.sh
-
 # User configuration
 
 # export MANPATH="/usr/local/man:$MANPATH"
@@ -85,6 +82,10 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+autoload -U compinit -u  && compinit -u
+source $ZSH/oh-my-zsh.sh
+
+eval "$(hub alias -s)"
 
 chpwd() {
   ls
