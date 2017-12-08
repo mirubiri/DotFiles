@@ -82,11 +82,11 @@ plugins=(zsh-completions zsh-syntax-highlighting zsh-autosuggestions brew colore
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-autoload -U compinit -u  && compinit -u
+autoload -U compinit -u && compinit -u
 source $ZSH/oh-my-zsh.sh
 
 eval "$(hub alias -s)"
-
+alias e='emacsclient'
 chpwd() {
   ls
 }

@@ -136,6 +136,8 @@
 	<true/>
 	<key>LoadPrefsFromCustomFolder</key>
 	<true/>
+	<key>NSFontPanelAttributes</key>
+	<string>1, 1</string>
 	<key>NSNavLastRootDirectory</key>
 	<string>~/DotFiles</string>
 	<key>NSNavPanelExpandedSizeForOpenMode</key>
@@ -176,9 +178,9 @@
 	<key>NSWindow Frame NSFontPanel</key>
 	<string>886 192 875 392 0 0 2560 1057 </string>
 	<key>NSWindow Frame SharedPreferences</key>
-	<string>992 202 796 473 0 0 2560 1057 </string>
+	<string>824 237 796 473 0 0 2560 1057 </string>
 	<key>NSWindow Frame iTerm Window 0</key>
-	<string>0 0 2560 1080 0 0 2560 1057 </string>
+	<string>0 80 665 475 0 0 2560 1057 </string>
 	<key>NeverWarnAboutShortLivedSessions_9B0C2CED-A8FE-4560-9E88-91281C8BE86C</key>
 	<true/>
 	<key>NeverWarnAboutShortLivedSessions_9B0C2CED-A8FE-4560-9E88-91281C8BE86C_selection</key>
@@ -855,7 +857,7 @@
 			<key>Use Italic Font</key>
 			<true/>
 			<key>Use Non-ASCII Font</key>
-			<true/>
+			<false/>
 			<key>Vertical Spacing</key>
 			<real>1</real>
 			<key>Visual Bell</key>
@@ -1616,7 +1618,7 @@
 	<key>SmartPlacement</key>
 	<false/>
 	<key>SwitchPaneModifier</key>
-	<integer>5</integer>
+	<integer>9</integer>
 	<key>TabStyle</key>
 	<integer>1</integer>
 	<key>TabViewType</key>

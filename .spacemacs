@@ -334,14 +334,14 @@ explicitly specified that a variable should be set before a package is loaded,
 you should place your code here."
 
   ;; Solves a book with helm bookmarks, remove when master is updated
-  (require 'helm-bookmark)
+  ;;(require 'helm-bookmark)
 
   (setq neo-autorefresh nil)
   (setq neo-theme 'icons)
   (setq powerline-default-separator 'alternate)
   (spacemacs/toggle-indent-guide-globally-on)
   (diff-hl-flydiff-mode '(:global t))
-  (setq helm-ag-base-command "rg --no-heading")
+  (setq helm-ag-base-command "rg --no-heading --smart-case")
   (setq evil-move-cursor-back nil)
   ;; Key Bindings
   ;; Drag lines up and down
