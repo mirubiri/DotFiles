@@ -32,7 +32,7 @@ export ZSH=~/.oh-my-zsh
 # ENABLE_CORRECTION="true"
 
 # Uncomment the following line to display red dots whilst waiting for completion.
-COMPLETION_WAITING_DOTS="true"
+ COMPLETION_WAITING_DOTS="true"
 
 # Uncomment the following line if you want to disable marking untracked files
 # under VCS as dirty. This makes repository status check for large repositories
@@ -93,6 +93,8 @@ chpwd() {
 
 export NVM_DIR="$HOME/.nvm"
 . "/usr/local/opt/nvm/nvm.sh"
+
+export NEXTAIL_SLACK_USERNAME="@alejandro.arrufat"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
