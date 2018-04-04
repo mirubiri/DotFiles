@@ -87,10 +87,14 @@ source $ZSH/oh-my-zsh.sh
 
 eval "$(hub alias -s)"
 alias e='emacsclient'
-
+export VISUAL=emacsclient
+export EDITOR="$VISUAL"
 chpwd() {
   ls
 }
 
 eval "$(rbenv init -)"
+eval "$(direnv hook zsh)"
+
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+export PATH="/Users/Alex/Library/Python/3.6/bin:$PATH"
