@@ -7,7 +7,7 @@ export ZSH=~/.oh-my-zsh
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
- ZSH_THEME="refined"
+ ZSH_THEME="avit"
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -52,7 +52,7 @@ export ZSH=~/.oh-my-zsh
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 
-plugins=(zsh-completions zsh-syntax-highlighting zsh-autosuggestions brew colored-man-pages bundler alias-tips git z)
+plugins=(zsh-completions zsh-syntax-highlighting zsh-autosuggestions brew colored-man-pages bundler alias-tips git git-extras z)
 
 # User configuration
 
@@ -85,7 +85,6 @@ plugins=(zsh-completions zsh-syntax-highlighting zsh-autosuggestions brew colore
 autoload -U compinit -u && compinit -u
 source $ZSH/oh-my-zsh.sh
 
-eval "$(hub alias -s)"
 alias e='emacsclient'
 export VISUAL=emacsclient
 export EDITOR="$VISUAL"
