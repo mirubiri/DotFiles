@@ -92,6 +92,7 @@ chpwd() {
   ls
 }
 
+eval "$(hub alias -s)"
 eval "$(rbenv init -)"
 eval "$(direnv hook zsh)"
 
