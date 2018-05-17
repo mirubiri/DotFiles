@@ -7,7 +7,7 @@ export ZSH=~/.oh-my-zsh
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
- ZSH_THEME="avit"
+ ZSH_THEME="refined"
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -88,13 +88,15 @@ source $ZSH/oh-my-zsh.sh
 alias e='emacsclient'
 export VISUAL=emacsclient
 export EDITOR="$VISUAL"
+
 chpwd() {
   ls
 }
 
 eval "$(hub alias -s)"
 eval "$(rbenv init -)"
-eval "$(direnv hook zsh)"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-export PATH="/Users/Alex/Library/Python/3.6/bin:$PATH"
+# export PATH="/Users/Alex/Library/Python/3.6/bin:$PATH"
+export PATH="/usr/local/sbin:$PATH"
+eval "$(direnv hook zsh)"
