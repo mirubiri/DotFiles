@@ -86,6 +86,7 @@ autoload -U compinit -u && compinit -u
 source $ZSH/oh-my-zsh.sh
 
 alias e='emacsclient'
+alias gb='checkout'
 export VISUAL=emacsclient
 export EDITOR="$VISUAL"
 
