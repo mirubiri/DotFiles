@@ -39,6 +39,7 @@ This function should only modify configuration layer settings."
      ;; Uncomment some layer names and press `SPC f e R' (Vim style) or
      ;; `M-m f e R' (Emacs style) to install them.
      ;; ----------------------------------------------------------------
+     themes-megapack
      org
      docker
      helm
@@ -102,6 +103,25 @@ It should only modify the values of Spacemacs settings."
   ;; This setq-default sexp is an exhaustive list of all the supported
   ;; spacemacs settings.
   (setq-default
+   ;; If non-nil then enable support for the portable dumper. You'll need
+   ;; to compile Emacs 27 from source following the instructions in file
+   ;; EXPERIMENTAL.org at to root of the git repository.
+   ;; (default nil)
+   dotspacemacs-enable-emacs-pdumper nil
+
+   ;; File path pointing to emacs 27.1 executable compiled with support
+   ;; for the portable dumper (this is currently the branch pdumper).
+   ;; (default "emacs-27.0.50")
+   dotspacemacs-emacs-pdumper-executable-file "emacs-27.0.50"
+
+   ;; Name of the Spacemacs dump file. This is the file will be created by the
+   ;; portable dumper in the cache directory under dumps sub-directory.
+   ;; To load it when starting Emacs add the parameter `--dump-file'
+   ;; when invoking Emacs 27.1 executable on the command line, for instance:
+   ;;   ./emacs --dump-file=~/.emacs.d/.cache/dumps/spacemacs.pdmp
+   ;; (default spacemacs.pdmp)
+   dotspacemacs-emacs-dumper-dump-file "spacemacs.pdmp"
+
    ;; If non-nil ELPA repositories are contacted via HTTPS whenever it's
    ;; possible. Set it to nil if you have no way to use HTTPS in your
    ;; environment, otherwise it is strongly recommended to let it set to t.
@@ -151,6 +171,22 @@ It should only modify the values of Spacemacs settings."
    ;; If non-nil output loading progress in `*Messages*' buffer. (default nil)
    dotspacemacs-verbose-loading nil
 
+   ;; If non-nil then Spacemacs will import your PATH and environment variables
+   ;; from your default shell on startup. This is enabled by default for macOS
+   ;; users and X11 users.
+   dotspacemacs-import-env-vars-from-shell (and (display-graphic-p)
+                                                (or (eq system-type 'darwin)
+                                                    (eq window-system 'x)))
+
+   ;; If nil then use the default shell is used to fetch the environment
+   ;; variables. Set this variable to a different shell executable path to
+   ;; import the environment variables from this shell. Note that
+   ;; `file-shell-name' is preserved and always points to the default shell. For
+   ;; instance to use your fish shell environment variables set this variable to
+   ;; `/usr/local/bin/fish'.
+   ;; (default nil)
+   dotspacemacs-import-env-vars-shell-file-name nil
+
    ;; Specify the startup banner. Default value is `official', it displays
    ;; the official spacemacs logo. An integer value is the index of text
    ;; banner, `random' chooses a random text banner in `core/banners'
@@ -181,7 +217,7 @@ It should only modify the values of Spacemacs settings."
    ;; List of themes, the first of the list is loaded when spacemacs starts.
    ;; Press `SPC T n' to cycle to the next theme in the list (works great
    ;; with 2 themes variants, one dark and one light)
-   dotspacemacs-themes '(ample)
+   dotspacemacs-themes '(doom-molokai)
 
    ;; Set the theme for the Spaceline. Supported themes are `spacemacs',
    ;; `all-the-icons', `custom', `vim-powerline' and `vanilla'. The first three
@@ -234,21 +270,6 @@ It should only modify the values of Spacemacs settings."
    ;; works in the GUI. (default nil)
    dotspacemacs-distinguish-gui-tab nil
 
-   ;; If non-nil `Y' is remapped to `y$' in Evil states. (default nil)
-   dotspacemacs-remap-Y-to-y$ nil
-
-   ;; If non-nil, the shift mappings `<' and `>' retain visual state if used
-   ;; there. (default t)
-   dotspacemacs-retain-visual-state-on-shift t
-
-   ;; If non-nil, `J' and `K' move lines up and down when in visual mode.
-   ;; (default nil)
-   dotspacemacs-visual-line-move-text nil
-
-   ;; If non-nil, inverse the meaning of `g' in `:substitute' Evil ex-command.
-   ;; (default nil)
-   dotspacemacs-ex-substitute-global nil
-
    ;; Name of the default layout (default "Default")
    dotspacemacs-default-layout-name "Default"
 
@@ -276,24 +297,7 @@ It should only modify the values of Spacemacs settings."
    dotspacemacs-auto-save-file-location 'cache
 
    ;; Maximum number of rollback slots to keep in the cache. (default 5)
-   dotspacemacs-max-rollback-slots 500
-
-   ;; If non-nil, `helm' will try to minimize the space it uses. (default nil)
-   dotspacemacs-helm-resize t
-
-   ;; if non-nil, the helm header is hidden when there is only one source.
-   ;; (default nil)
-   dotspacemacs-helm-no-header nil
-
-   ;; define the position to display `helm', options are `bottom', `top',
-   ;; `left', or `right'. (default 'bottom)
-   dotspacemacs-helm-position 'bottom
-
-   ;; Controls fuzzy matching in helm. If set to `always', force fuzzy matching
-   ;; in all non-asynchronous sources. If set to `source', preserve individual
-   ;; source settings. Else, disable fuzzy matching in all sources.
-   ;; (default 'always)
-   dotspacemacs-helm-use-fuzzy 'always
+   dotspacemacs-max-rollback-slots 5
 
    ;; If non-nil, the paste transient-state is enabled. While enabled, pressing
    ;; `p' several times cycles through the elements in the `kill-ring'.
@@ -351,7 +355,9 @@ It should only modify the values of Spacemacs settings."
    ;; If non-nil show the color guide hint for transient state keys. (default t)
    dotspacemacs-show-transient-state-color-guide t
 
-   ;; If non-nil unicode symbols are displayed in the mode line. (default t)
+   ;; If non-nil unicode symbols are displayed in the mode line.
+   ;; If you use Emacs as a daemon and wants unicode characters only in GUI set
+   ;; the value to quoted `display-graphic-p'. (default t)
    dotspacemacs-mode-line-unicode-symbols t
 
    ;; If non-nil smooth scrolling (native-scrolling) is enabled. Smooth
@@ -393,7 +399,15 @@ It should only modify the values of Spacemacs settings."
    dotspacemacs-highlight-delimiters 'all
 
    ;; If non-nil, start an Emacs server if one is not already running.
-   dotspacemacs-enable-server t
+   ;; (default nil)
+   dotspacemacs-enable-server nil
+
+   ;; Set the emacs server socket location.
+   ;; If nil, uses whatever the Emacs default is, otherwise a directory path
+   ;; like \"~/.emacs.d/server\". It has no effect if
+   ;; `dotspacemacs-enable-server' is nil.
+   ;; (default nil)
+   dotspacemacs-server-socket-dir nil
 
    ;; If non-nil, advise quit functions to keep server open when quitting.
    ;; (default nil)
@@ -446,8 +460,6 @@ It should only modify the values of Spacemacs settings."
   ;; Avoid the use of the right mac option key as modifier
    mac-right-option-modifier nil
 
-   exec-path-from-shell-check-startup-files nil
-
   ;; Disable the creation of lock files #file.name
    create-lockfiles nil
    ))
@@ -476,7 +488,7 @@ before packages are loaded."
 
   ;; Makes full names appear in helm buffers
   (setq helm-buffer-max-length nil)
-
+  (setq helm-buffers-truncate-lines nil)
   ;; Follow symlinks withouth confirmation
   (setq vc-follow-symlinks t)
 
@@ -518,7 +530,7 @@ This function is called at the very end of Spacemacs initialization."
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (magit-svn yasnippet-snippets yaml-mode ws-butler winum which-key web-mode web-beautify volatile-highlights vi-tilde-fringe uuidgen use-package toc-org tagedit symon string-inflection sql-indent spaceline-all-the-icons smeargle slim-mode scss-mode sass-mode rvm ruby-tools ruby-test-mode ruby-refactor ruby-hash-syntax rubocop rspec-mode robe restart-emacs rbenv rainbow-delimiters pug-mode projectile-rails popwin persp-mode password-generator paradox overseer origami orgit org-projectile org-present org-pomodoro org-mime org-download org-bullets org-brain open-junk-file neotree nameless move-text mmm-mode minitest markdown-toc magithub magit-gitflow magit-gh-pulls macrostep lorem-ipsum linum-relative link-hint indent-guide impatient-mode hungry-delete hl-todo highlight-parentheses highlight-numbers highlight-indentation helm-xref helm-themes helm-swoop helm-purpose helm-projectile helm-mode-manager helm-make helm-gitignore helm-flx helm-descbinds helm-dash helm-css-scss helm-company helm-c-yasnippet helm-ag google-translate golden-ratio gnuplot github-search github-clone gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-gutter-fringe git-gutter-fringe+ gist gh-md fuzzy font-lock+ flycheck-pos-tip flx-ido fill-column-indicator feature-mode fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-snipe evil-search-highlight-persist evil-org evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-magit evil-lisp-state evil-lion evil-indent-plus evil-iedit-state evil-exchange evil-escape evil-ediff evil-cleverparens evil-args evil-anzu eval-sexp-fu emmet-mode elisp-slime-nav editorconfig dumb-jump drag-stuff dockerfile-mode docker diminish diff-hl define-word dash-at-point counsel-projectile company-web company-statistics column-enforce-mode clean-aindent-mode chruby centered-cursor-mode bundler browse-at-remote auto-yasnippet auto-highlight-symbol auto-compile ample-theme aggressive-indent ace-window ace-link ace-jump-helm-line ac-ispell))))
+    (drag-stuff zenburn-theme zen-and-art-theme yasnippet-snippets yaml-mode ws-butler winum white-sand-theme which-key web-mode web-beautify volatile-highlights vi-tilde-fringe uuidgen use-package underwater-theme ujelly-theme twilight-theme twilight-bright-theme twilight-anti-bright-theme toxi-theme toc-org tao-theme tangotango-theme tango-plus-theme tango-2-theme tagedit symon sunny-day-theme sublime-themes subatomic256-theme subatomic-theme string-inflection sql-indent spaceline-all-the-icons spacegray-theme soothe-theme solarized-theme soft-stone-theme soft-morning-theme soft-charcoal-theme smyx-theme smeargle slim-mode seti-theme scss-mode sass-mode rvm ruby-tools ruby-test-mode ruby-refactor ruby-hash-syntax rubocop rspec-mode robe reverse-theme restart-emacs rebecca-theme rbenv rainbow-delimiters railscasts-theme purple-haze-theme pug-mode projectile-rails professional-theme popwin planet-theme phoenix-dark-pink-theme phoenix-dark-mono-theme persp-mode password-generator paradox overseer origami orgit organic-green-theme org-projectile org-present org-pomodoro org-mime org-download org-bullets org-brain open-junk-file omtose-phellack-theme oldlace-theme occidental-theme obsidian-theme noctilux-theme neotree naquadah-theme nameless mustang-theme move-text monokai-theme monochrome-theme molokai-theme moe-theme mmm-mode minitest minimal-theme material-theme markdown-toc majapahit-theme magithub magit-svn magit-gitflow magit-gh-pulls madhat2r-theme macrostep lush-theme lorem-ipsum link-hint light-soap-theme kaolin-themes jbeans-theme jazz-theme ir-black-theme inkpot-theme indent-guide impatient-mode hungry-delete hl-todo highlight-parentheses highlight-numbers highlight-indentation heroku-theme hemisu-theme helm-xref helm-themes helm-swoop helm-purpose helm-projectile helm-mode-manager helm-make helm-gitignore helm-flx helm-descbinds helm-dash helm-css-scss helm-company helm-c-yasnippet helm-ag hc-zenburn-theme gruvbox-theme gruber-darker-theme grandshell-theme gotham-theme google-translate golden-ratio gnuplot github-search github-clone gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-gutter-fringe git-gutter-fringe+ gist gh-md gandalf-theme fuzzy font-lock+ flycheck-pos-tip flx-ido flatui-theme flatland-theme fill-column-indicator feature-mode farmhouse-theme fancy-battery eziam-theme eyebrowse expand-region exotica-theme evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-snipe evil-org evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-magit evil-lisp-state evil-lion evil-indent-plus evil-iedit-state evil-goggles evil-exchange evil-escape evil-ediff evil-cleverparens evil-args evil-anzu eval-sexp-fu espresso-theme emmet-mode elisp-slime-nav editorconfig dumb-jump dracula-theme doom-themes dockerfile-mode docker django-theme diminish diff-hl define-word dash-at-point darktooth-theme darkokai-theme darkmine-theme darkburn-theme dakrone-theme cyberpunk-theme counsel-projectile company-web company-statistics column-enforce-mode color-theme-sanityinc-tomorrow color-theme-sanityinc-solarized clues-theme clean-aindent-mode chruby cherry-blossom-theme centered-cursor-mode busybee-theme bundler bubbleberry-theme browse-at-remote birds-of-paradise-plus-theme badwolf-theme auto-yasnippet auto-highlight-symbol auto-compile apropospriate-theme anti-zenburn-theme ample-zen-theme ample-theme alect-themes aggressive-indent afternoon-theme ace-window ace-link ace-jump-helm-line ac-ispell))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
