@@ -39,9 +39,7 @@ This function should only modify configuration layer settings."
      ;; Uncomment some layer names and press `SPC f e R' (Vim style) or
      ;; `M-m f e R' (Emacs style) to install them.
      ;; ----------------------------------------------------------------
-     themes-megapack
      org
-     docker
 
      (helm :variables helm-enable-auto-resize t)
 
@@ -59,13 +57,12 @@ This function should only modify configuration layer settings."
      github
 
      dash
-     ;; treemacs
+
      neotree
 
      ;; Languages
      emacs-lisp
      yaml
-     sql
      markdown
      (ruby :variables
            ruby-version-manager 'rbenv
@@ -80,7 +77,7 @@ This function should only modify configuration layer settings."
    ;; To use a local version of a package, use the `:location' property:
    ;; '(your-package :location "~/path/to/your-package/")
    ;; Also include the dependencies as they will not be resolved automatically.
-   dotspacemacs-additional-packages '(drag-stuff)
+   dotspacemacs-additional-packages '(drag-stuff doom-themes)
 
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
@@ -178,6 +175,7 @@ It should only modify the values of Spacemacs settings."
    ;; users and X11 users.
    dotspacemacs-import-env-vars-from-shell (and (display-graphic-p)
                                                 (or (eq system-type 'darwin)
+                                                    (eq system-type 'gnu/linux)
                                                     (eq window-system 'x)))
 
    ;; If nil then use the default shell is used to fetch the environment
@@ -418,7 +416,7 @@ It should only modify the values of Spacemacs settings."
    ;; List of search tool executable names. Spacemacs uses the first installed
    ;; tool of the list. Supported tools are `rg', `ag', `pt', `ack' and `grep'.
    ;; (default '("rg" "ag" "pt" "ack" "grep"))
-   dotspacemacs-search-tools '("rg" "ag" "pt" "ack" "grep")
+   dotspacemacs-search-tools '("rg")
 
    ;; Format specification for setting the frame title.
    ;; %a - the `abbreviated-file-name', or `buffer-name'
@@ -491,6 +489,7 @@ before packages are loaded."
   ;; Makes full names appear in helm buffers
   (setq helm-buffer-max-length nil)
   (setq helm-buffers-truncate-lines nil)
+
   ;; Follow symlinks withouth confirmation
   (setq vc-follow-symlinks t)
 
@@ -508,35 +507,7 @@ before packages are loaded."
   (define-key evil-normal-state-map (kbd "s-j") 'drag-stuff-down)
   (define-key evil-normal-state-map (kbd "s-<up>") 'drag-stuff-up)
   (define-key evil-normal-state-map (kbd "s-<down>") 'drag-stuff-down)
+  )
 
-  ;; Assign toggle fold to tab key in normal mode
-  ;; (define-key evil-normal-state-map (kbd "TAB") 'origami-toggle-node)
-
-  ;; Make evil-mode up/down operate in screen lines instead of logical lines
-  ;; (define-key evil-motion-state-map "j" 'evil-next-visual-line)
-  ;; (define-key evil-motion-state-map "k" 'evil-previous-visual-line)
-  ;; (define-key evil-visual-state-map "j" 'evil-next-visual-line)
-  ;; (define-key evil-visual-state-map "k" 'evil-previous-visual-line)
-)
 ;; Do not write anything past this comment. This is where Emacs will
 ;; auto-generate custom variable definitions.
-(defun dotspacemacs/emacs-custom-settings ()
-  "Emacs custom settings.
-This is an auto-generated function, do not modify its content directly, use
-Emacs customize menu instead.
-This function is called at the very end of Spacemacs initialization."
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(package-selected-packages
-   (quote
-    (toc-org rspec-mode evil-goggles emmet-mode darktooth-theme counsel-projectile counsel swiper ivy smartparens flycheck company helm avy magit memoize use-package zenburn-theme zen-and-art-theme yasnippet-snippets yaml-mode ws-butler winum white-sand-theme which-key web-mode web-beautify volatile-highlights vi-tilde-fringe uuidgen underwater-theme ujelly-theme twilight-theme twilight-bright-theme twilight-anti-bright-theme toxi-theme tao-theme tangotango-theme tango-plus-theme tango-2-theme tagedit symon sunny-day-theme sublime-themes subatomic256-theme subatomic-theme string-inflection sql-indent spaceline-all-the-icons spacegray-theme soothe-theme solarized-theme soft-stone-theme soft-morning-theme soft-charcoal-theme smyx-theme smeargle slim-mode seti-theme scss-mode sass-mode rvm ruby-tools ruby-test-mode ruby-refactor ruby-hash-syntax rubocop robe reverse-theme restart-emacs rebecca-theme rbenv rainbow-delimiters railscasts-theme purple-haze-theme pug-mode projectile-rails professional-theme popwin planet-theme phoenix-dark-pink-theme phoenix-dark-mono-theme persp-mode password-generator paradox overseer origami orgit organic-green-theme org-projectile org-present org-pomodoro org-mime org-download org-bullets org-brain open-junk-file omtose-phellack-theme oldlace-theme occidental-theme obsidian-theme noctilux-theme neotree naquadah-theme nameless mustang-theme move-text monokai-theme monochrome-theme molokai-theme moe-theme mmm-mode minitest minimal-theme material-theme markdown-toc majapahit-theme magithub magit-svn magit-gitflow magit-gh-pulls madhat2r-theme macrostep lush-theme lorem-ipsum link-hint light-soap-theme kaolin-themes jbeans-theme jazz-theme ir-black-theme inkpot-theme indent-guide impatient-mode hungry-delete hl-todo highlight-parentheses highlight-numbers highlight-indentation heroku-theme hemisu-theme helm-xref helm-themes helm-swoop helm-purpose helm-projectile helm-mode-manager helm-make helm-gitignore helm-flx helm-descbinds helm-dash helm-css-scss helm-company helm-c-yasnippet helm-ag hc-zenburn-theme gruvbox-theme gruber-darker-theme grandshell-theme gotham-theme google-translate golden-ratio gnuplot github-search github-clone gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-gutter-fringe git-gutter-fringe+ gist gh-md gandalf-theme fuzzy font-lock+ flycheck-pos-tip flx-ido flatui-theme flatland-theme fill-column-indicator feature-mode farmhouse-theme fancy-battery eziam-theme eyebrowse expand-region exotica-theme evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-snipe evil-org evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-magit evil-lisp-state evil-lion evil-indent-plus evil-iedit-state evil-exchange evil-escape evil-ediff evil-cleverparens evil-args evil-anzu eval-sexp-fu espresso-theme elisp-slime-nav editorconfig dumb-jump drag-stuff dracula-theme doom-themes dockerfile-mode docker django-theme diminish diff-hl define-word dash-at-point darkokai-theme darkmine-theme darkburn-theme dakrone-theme cyberpunk-theme company-web company-statistics column-enforce-mode color-theme-sanityinc-tomorrow color-theme-sanityinc-solarized clues-theme clean-aindent-mode chruby cherry-blossom-theme centered-cursor-mode busybee-theme bundler bubbleberry-theme browse-at-remote birds-of-paradise-plus-theme bind-key badwolf-theme auto-yasnippet auto-highlight-symbol auto-compile apropospriate-theme anti-zenburn-theme ample-zen-theme ample-theme alect-themes aggressive-indent afternoon-theme ace-window ace-link ace-jump-helm-line ac-ispell))))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
-)
