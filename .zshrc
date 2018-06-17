@@ -1,6 +1,3 @@
-# If you come from bash you might have to change your $PATH.
-# export PATH=$HOME/bin:/usr/local/bin:$PATH
-
 # Path to your oh-my-zsh installation.
 export ZSH=~/.oh-my-zsh
 
@@ -82,23 +79,17 @@ plugins=(zsh-completions zsh-syntax-highlighting zsh-autosuggestions brew colore
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+chpwd() {
+  ls
+}
+
 autoload -U compinit -u && compinit -u
 source $ZSH/oh-my-zsh.sh
 
 alias e='emacsclient -n'
 alias gb='checkout'
+
 export VISUAL=emacsclient
 export EDITOR=emacsclient
 
-chpwd() {
-  ls
-}
-
 eval "$(hub alias -s)"
-eval "$(rbenv init -)"
-
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-# export PATH="/Users/Alex/Library/Python/3.6/bin:$PATH"
-export PATH="/usr/local/sbin:$PATH"
-export PATH="/usr/local/opt/python/libexec/bin:$PATH"
-eval "$(direnv hook zsh)"
