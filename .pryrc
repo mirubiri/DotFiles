@@ -1,4 +1,4 @@
-Pry.config.editor = "subl"
+Pry.config.editor = "emacsclient"
 
 Pry.commands.alias_command 'c', 'continue'
 Pry.commands.alias_command 's', 'step'
