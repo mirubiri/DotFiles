@@ -60,8 +60,7 @@ This function should only modify configuration layer settings."
      org
      (ruby :variables
            ruby-version-manager 'rbenv
-           ruby-test-runner 'rspec
-           ruby-enable-enh-ruby-mode t)
+           ruby-test-runner 'rspec)
      syntax-checking
      (version-control :variables
                       version-control-diff-tool 'diff-hl
@@ -481,8 +480,10 @@ before packages are loaded."
   ;; Temporal fix to solve goto-definition
   (setq spacemacs-default-jump-handlers
         (remove 'evil-goto-definition spacemacs-default-jump-handlers))
+
   ;; Disable automatic UTF-8 comment tag on files with some non-ASCII character
   (setq ruby-insert-encoding-magic-comment nil)
+  (setq ruby-use-encoding-map nil)
 
   ;; Neotree settings
   (setq neo-autorefresh nil)
@@ -503,7 +504,7 @@ before packages are loaded."
 
   ;; EVIL Key Bindings
   (setq evil-move-cursor-back nil)
-  (setq ob-mermaid-cli-path "/usr/local/bin/mmdc")
+
   ;; Drag lines up and down
   (define-key evil-normal-state-map (kbd "s-k") 'drag-stuff-up)
   (define-key evil-normal-state-map (kbd "s-j") 'drag-stuff-down)
@@ -526,7 +527,7 @@ This function is called at the very end of Spacemacs initialization."
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (enh-ruby-mode yasnippet-snippets yaml-mode ws-butler winum which-key web-mode web-beautify volatile-highlights vmd-mode vi-tilde-fringe uuidgen use-package toc-org tagedit symon string-inflection spaceline-all-the-icons smeargle slim-mode seeing-is-believing scss-mode sass-mode rvm ruby-tools ruby-test-mode ruby-refactor ruby-hash-syntax rubocop rspec-mode robe restart-emacs rbenv rainbow-delimiters pug-mode projectile-rails popwin persp-mode password-generator paradox overseer origami orgit org-projectile org-present org-pomodoro org-mime org-download org-bullets org-brain open-junk-file neotree nameless move-text mmm-mode minitest markdown-toc magit-svn magit-gitflow macrostep lorem-ipsum livid-mode link-hint json-navigator js2-refactor js-doc indent-guide impatient-mode hungry-delete hl-todo highlight-parentheses highlight-numbers highlight-indentation helm-xref helm-themes helm-swoop helm-purpose helm-projectile helm-mode-manager helm-make helm-gitignore helm-flx helm-descbinds helm-css-scss helm-company helm-c-yasnippet helm-ag google-translate golden-ratio gnuplot gitignore-templates gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-gutter-fringe git-gutter-fringe+ gh-md fuzzy font-lock+ flycheck-pos-tip flx-ido fill-column-indicator feature-mode fancy-battery eyebrowse expand-region evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-snipe evil-org evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-magit evil-lisp-state evil-lion evil-indent-plus evil-iedit-state evil-goggles evil-exchange evil-escape evil-cleverparens evil-args evil-anzu eval-sexp-fu emmet-mode elisp-slime-nav editorconfig dumb-jump drag-stuff dotenv-mode doom-themes dockerfile-mode docker diminish diff-hl define-word csv-mode counsel-projectile company-web company-tern company-statistics column-enforce-mode clean-aindent-mode chruby centered-cursor-mode bundler browse-at-remote auto-yasnippet auto-highlight-symbol auto-compile aggressive-indent ace-window ace-link ace-jump-helm-line ac-ispell))))
+    (helm-xref helm-themes helm-swoop helm-purpose helm-projectile helm-mode-manager helm-gitignore helm-flx helm-descbinds helm-css-scss helm-company helm-c-yasnippet helm-ag ace-jump-helm-line yasnippet-snippets yaml-mode ws-butler winum which-key wgrep web-mode web-beautify volatile-highlights vmd-mode vi-tilde-fringe uuidgen use-package toc-org tagedit symon string-inflection spaceline-all-the-icons smex smeargle slim-mode seeing-is-believing scss-mode sass-mode rvm ruby-tools ruby-test-mode ruby-refactor ruby-hash-syntax rubocop rspec-mode robe restart-emacs request rbenv rake rainbow-delimiters pug-mode prettier-js popwin persp-mode password-generator paradox overseer origami orgit org-projectile org-present org-pomodoro org-mime org-download org-bullets org-brain open-junk-file neotree nameless move-text mmm-mode minitest markdown-toc magit-svn magit-gitflow macrostep lorem-ipsum livid-mode link-hint json-navigator js2-refactor js-doc ivy-yasnippet ivy-xref ivy-rich ivy-purpose ivy-hydra indent-guide impatient-mode hungry-delete hl-todo highlight-parentheses highlight-numbers highlight-indentation helm-make google-translate golden-ratio gnuplot gitignore-templates gitignore-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-gutter-fringe git-gutter-fringe+ gh-md fuzzy font-lock+ flycheck-pos-tip flx-ido fill-column-indicator fancy-battery eyebrowse expand-region evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-snipe evil-org evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-magit evil-lisp-state evil-lion evil-indent-plus evil-iedit-state evil-goggles evil-exchange evil-escape evil-cleverparens evil-args evil-anzu eval-sexp-fu emmet-mode elisp-slime-nav editorconfig dumb-jump drag-stuff dotenv-mode doom-themes dockerfile-mode docker diminish diff-hl define-word csv-mode counsel-projectile counsel-css company-web company-tern company-statistics column-enforce-mode clean-aindent-mode chruby centered-cursor-mode bundler browse-at-remote auto-yasnippet auto-highlight-symbol auto-compile aggressive-indent ace-window ace-link ac-ispell))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
