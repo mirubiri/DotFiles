@@ -49,7 +49,7 @@ export ZSH=~/.oh-my-zsh
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 
-plugins=(zsh-completions zsh-syntax-highlighting zsh-autosuggestions brew colored-man-pages bundler alias-tips git git-extras z)
+plugins=(zsh-completions zsh-syntax-highlighting zsh-autosuggestions brew colored-man-pages docker docker-compose bundler alias-tips git git-extras z)
 
 # User configuration
 
