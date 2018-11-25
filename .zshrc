@@ -79,9 +79,6 @@ plugins=(zsh-completions zsh-syntax-highlighting zsh-autosuggestions brew colore
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-chpwd() {
-  ls
-}
 
 autoload -U compinit -u && compinit -u
 source $ZSH/oh-my-zsh.sh
@@ -89,13 +86,17 @@ source $ZSH/oh-my-zsh.sh
 eval "$(rbenv init -)"
 eval "$(direnv hook zsh)"
 
-alias e='emacsclient -n'
+alias e='emacsclient'
 alias gb='checkout'
 
-export VISUAL=emacsclient
-export EDITOR=emacsclient
+export EDITOR="emacsclient -t"
+export VISUAL="emacsclient -c -a emacs"
 
 eval "$(hub alias -s)"
 export PATH="/usr/local/opt/mysql-client/bin:$PATH"
 export PATH=$PATH:$HOME/bin:/usr/local/bin:/usr/local/sbin
 export PATH=$PATH:~/Library/Python/3.7/bin
+
+chpwd() {
+    ls
+}
