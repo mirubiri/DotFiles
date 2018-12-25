@@ -44,12 +44,12 @@ This function should only modify configuration layer settings."
      csv
      docker
      emacs-lisp
+     emoji
      evil-snipe
      git
      ;; github
      html
-     ivy
-     ;; (helm :variables helm-enable-auto-resize t)
+     (helm :variables helm-enable-auto-resize t)
      (javascript :variables
                  javascript-backend 'lsp
                  js2-basic-offset 2
@@ -193,8 +193,7 @@ It should only modify the values of Spacemacs settings."
    dotspacemacs-startup-buffer-responsive t
 
    ;; Default major mode of the scratch buffer (default `text-mode')
-   dotspacemacs-scratch-mode 'text-mode
-
+   dotspacemacs-scratch-mode 'emacs-lisp-mode
    ;; Initial message in the scratch buffer, such as "Welcome to Spacemacs!"
    ;; (default nil)
    dotspacemacs-initial-scratch-message nil
@@ -511,6 +510,8 @@ before packages are loaded."
   (define-key evil-normal-state-map (kbd "s-j") 'drag-stuff-down)
   (define-key evil-normal-state-map (kbd "s-<up>") 'drag-stuff-up)
   (define-key evil-normal-state-map (kbd "s-<down>") 'drag-stuff-down)
+  (define-key evil-normal-state-map (kbd "S-<up>") 'scroll-down)
+  (define-key evil-normal-state-map (kbd "S-<down>") 'scroll-up)
   (define-key evil-normal-state-map (kbd "-") 'evil-avy-goto-word-or-subword-1)
 
   ;; Automatic Stuff
@@ -534,7 +535,7 @@ This function is called at the very end of Spacemacs initialization."
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (magit yasnippet-snippets yaml-mode ws-butler winum which-key wgrep web-mode web-beautify volatile-highlights vmd-mode vi-tilde-fringe uuidgen use-package toc-org tagedit symon string-inflection spaceline-all-the-icons smex smeargle slim-mode seeing-is-believing scss-mode sass-mode rvm ruby-tools ruby-test-mode ruby-refactor ruby-hash-syntax rubocop rspec-mode robe restart-emacs request rbenv rake rainbow-delimiters pug-mode prettier-js popwin persp-mode password-generator paradox overseer origami orgit org-projectile org-present org-pomodoro org-mime org-download org-bullets org-brain open-junk-file neotree nameless move-text mmm-mode minitest markdown-toc magit-svn magit-gitflow macrostep lorem-ipsum livid-mode link-hint json-navigator js2-refactor js-doc ivy-yasnippet ivy-xref ivy-purpose ivy-hydra indent-guide impatient-mode hungry-delete hl-todo highlight-parentheses highlight-numbers highlight-indentation helm-make google-translate golden-ratio gnuplot gitignore-templates gitignore-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-gutter-fringe git-gutter-fringe+ ghub gh-md fuzzy font-lock+ flycheck-pos-tip flx-ido fill-column-indicator fancy-battery eyebrowse expand-region evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-snipe evil-org evil-numbers evil-nerd-commenter evil-matchit evil-magit evil-lisp-state evil-lion evil-indent-plus evil-iedit-state evil-goggles evil-exchange evil-escape evil-ediff evil-cleverparens evil-args evil-anzu eval-sexp-fu enh-ruby-mode emmet-mode elisp-slime-nav editorconfig dumb-jump drag-stuff dotenv-mode doom-themes doom-modeline dockerfile-mode docker diminish diff-hl define-word csv-mode counsel-projectile counsel-css company-web company-tern company-statistics column-enforce-mode clean-aindent-mode chruby centered-cursor-mode bundler browse-at-remote auto-yasnippet auto-highlight-symbol auto-compile aggressive-indent ace-window ace-link ac-ispell))))
+    (yasnippet-snippets web-mode orgit org-brain evil-surround evil-nerd-commenter emojify editorconfig dumb-jump doom-themes doom-modeline docker diff-hl ace-window ace-link counsel swiper ivy smartparens flycheck company helm helm-core magit git-commit ghub markdown-mode projectile spaceline async org-plus-contrib yaml-mode ws-butler writeroom-mode with-editor winum which-key web-beautify volatile-highlights vmd-mode vi-tilde-fringe uuidgen use-package treepy toc-org tagedit tablist symon string-inflection spaceline-all-the-icons smeargle slim-mode shrink-path seeing-is-believing scss-mode sass-mode rvm ruby-tools ruby-test-mode ruby-refactor ruby-hash-syntax rubocop rspec-mode robe restart-emacs rbenv rake rainbow-delimiters pug-mode prettier-js powerline popwin persp-mode password-generator paradox overseer origami org-projectile org-present org-pomodoro org-mime org-download org-bullets open-junk-file neotree nameless move-text mmm-mode minitest markdown-toc magit-svn magit-gitflow macrostep lorem-ipsum livid-mode link-hint json-navigator json-mode js2-refactor js-doc indent-guide impatient-mode hungry-delete ht hl-todo highlight-parentheses highlight-numbers highlight-indentation helm-xref helm-themes helm-swoop helm-purpose helm-projectile helm-org-rifle helm-mode-manager helm-make helm-gitignore helm-git-grep helm-flx helm-descbinds helm-css-scss helm-company helm-c-yasnippet helm-ag graphql google-translate golden-ratio gnuplot gitignore-templates gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-gutter-fringe git-gutter-fringe+ gh-md fuzzy font-lock+ flycheck-pos-tip flx-ido fill-column-indicator fancy-battery eyebrowse expand-region evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-snipe evil-org evil-numbers evil-matchit evil-magit evil-lisp-state evil-lion evil-indent-plus evil-iedit-state evil-goggles evil-exchange evil-escape evil-ediff evil-cleverparens evil-args evil-anzu eval-sexp-fu enh-ruby-mode emoji-cheat-sheet-plus emmet-mode elisp-slime-nav eldoc-eval drag-stuff dotenv-mode dockerfile-mode docker-tramp diminish define-word csv-mode counsel-projectile company-web company-tern company-statistics company-emoji column-enforce-mode clean-aindent-mode chruby centered-cursor-mode bundler browse-at-remote auto-yasnippet auto-highlight-symbol auto-compile aggressive-indent ace-jump-helm-line ac-ispell))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

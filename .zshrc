@@ -86,11 +86,11 @@ source $ZSH/oh-my-zsh.sh
 eval "$(rbenv init -)"
 eval "$(direnv hook zsh)"
 
-alias e='emacsclient'
+alias e='emacsclient -t'
 alias gb='checkout'
-
+alias rake='noglob rake'
 export EDITOR="emacsclient -t"
-export VISUAL="emacsclient -c -a emacs"
+export VISUAL="emacsclient -t"
 
 eval "$(hub alias -s)"
 export PATH="/usr/local/opt/mysql-client/bin:$PATH"
