@@ -4,7 +4,7 @@ export ZSH=~/.oh-my-zsh
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
- ZSH_THEME="refined"
+ ZSH_THEME="spaceship"
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -49,7 +49,7 @@ export ZSH=~/.oh-my-zsh
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 
-plugins=(zsh-completions zsh-syntax-highlighting zsh-autosuggestions brew colored-man-pages docker docker-compose bundler alias-tips git git-extras z)
+plugins=(zsh-completions fast-syntax-highlighting zsh-autosuggestions brew colored-man-pages docker docker-compose bundler alias-tips git git-extras z)
 
 # User configuration
 
@@ -79,6 +79,11 @@ plugins=(zsh-completions zsh-syntax-highlighting zsh-autosuggestions brew colore
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+SPACESHIP_PROMPT_ADD_NEWLINE="true"
+SPACESHIP_CHAR_SYMBOL=" \uf0e7 "
+SPACESHIP_CHAR_PREFIX="\uf296"
+SPACESHIP_CHAR_SUFFIX=(" ")
+SPACESHIP_PROMPT_FIRST_PREFIX_SHOW="true"
 
 autoload -U compinit -u && compinit -u
 source $ZSH/oh-my-zsh.sh
@@ -86,6 +91,8 @@ source $ZSH/oh-my-zsh.sh
 eval "$(rbenv init -)"
 eval "$(direnv hook zsh)"
 
+alias ls='colorls --sort-dirs'
+alias lc='colorls --tree'
 alias e='emacsclient -t'
 alias gb='checkout'
 alias rake='noglob rake'

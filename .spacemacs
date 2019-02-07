@@ -47,7 +47,7 @@ This function should only modify configuration layer settings."
      emoji
      evil-snipe
      git
-     ;; github
+     github
      html
      (helm :variables helm-enable-auto-resize t)
      (javascript :variables
@@ -58,11 +58,12 @@ This function should only modify configuration layer settings."
            js-indent-level 2)
      (markdown :variables markdown-live-preview-engine 'vmd)
      neotree
+     multiple-cursors
      org
      (ruby :variables
            ruby-version-manager 'rbenv
-           ruby-enable-enh-ruby-mode t
-           ruby-test-runner 'rspec)
+           ruby-test-runner 'rspec
+           ruby-enable-enh-ruby-mode t)
      syntax-checking
      (version-control :variables
                       version-control-diff-tool 'diff-hl
@@ -70,7 +71,7 @@ This function should only modify configuration layer settings."
                       version-control-global-margin t)
 
      yaml
-    )
+     )
 
    ;; List of additional packages that will be installed without being
    ;; wrapped in a layer. If you need some configuration for these
@@ -481,9 +482,12 @@ before packages are loaded."
   (setq spacemacs-default-jump-handlers
         (remove 'evil-goto-definition spacemacs-default-jump-handlers))
 
+
   ;; Disable automatic UTF-8 comment tag on files with some non-ASCII character
   (setq ruby-insert-encoding-magic-comment nil)
   (setq ruby-use-encoding-map nil)
+  (setq enh-ruby-add-encoding-comment-on-save nil)
+  (setq enh-ruby-encoding-map nil)
 
   ;; Neotree settings
   (setq neo-autorefresh nil)
@@ -517,9 +521,10 @@ before packages are loaded."
   ;; Automatic Stuff
   (setq auto-revert-interval 1)
   (setq auto-save-interval 10)
-  (setq auto-save-timeout 2)
+  (setq auto-save-timeout 5)
   ;; Show recent files after switch project
   ;; (setq projectile-switch-project-action (quote helm-projectile-recentf))
+  (spacemacs/toggle-aggressive-indent-globally-on)
   )
 ;; Do not write anything past this comment. This is where Emacs will
 ;; auto-generate custom variable definitions.
@@ -535,7 +540,7 @@ This function is called at the very end of Spacemacs initialization."
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (yasnippet-snippets web-mode orgit org-brain evil-surround evil-nerd-commenter emojify editorconfig dumb-jump doom-themes doom-modeline docker diff-hl ace-window ace-link counsel swiper ivy smartparens flycheck company helm helm-core magit git-commit ghub markdown-mode projectile spaceline async org-plus-contrib yaml-mode ws-butler writeroom-mode with-editor winum which-key web-beautify volatile-highlights vmd-mode vi-tilde-fringe uuidgen use-package treepy toc-org tagedit tablist symon string-inflection spaceline-all-the-icons smeargle slim-mode shrink-path seeing-is-believing scss-mode sass-mode rvm ruby-tools ruby-test-mode ruby-refactor ruby-hash-syntax rubocop rspec-mode robe restart-emacs rbenv rake rainbow-delimiters pug-mode prettier-js powerline popwin persp-mode password-generator paradox overseer origami org-projectile org-present org-pomodoro org-mime org-download org-bullets open-junk-file neotree nameless move-text mmm-mode minitest markdown-toc magit-svn magit-gitflow macrostep lorem-ipsum livid-mode link-hint json-navigator json-mode js2-refactor js-doc indent-guide impatient-mode hungry-delete ht hl-todo highlight-parentheses highlight-numbers highlight-indentation helm-xref helm-themes helm-swoop helm-purpose helm-projectile helm-org-rifle helm-mode-manager helm-make helm-gitignore helm-git-grep helm-flx helm-descbinds helm-css-scss helm-company helm-c-yasnippet helm-ag graphql google-translate golden-ratio gnuplot gitignore-templates gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-gutter-fringe git-gutter-fringe+ gh-md fuzzy font-lock+ flycheck-pos-tip flx-ido fill-column-indicator fancy-battery eyebrowse expand-region evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-snipe evil-org evil-numbers evil-matchit evil-magit evil-lisp-state evil-lion evil-indent-plus evil-iedit-state evil-goggles evil-exchange evil-escape evil-ediff evil-cleverparens evil-args evil-anzu eval-sexp-fu enh-ruby-mode emoji-cheat-sheet-plus emmet-mode elisp-slime-nav eldoc-eval drag-stuff dotenv-mode dockerfile-mode docker-tramp diminish define-word csv-mode counsel-projectile company-web company-tern company-statistics company-emoji column-enforce-mode clean-aindent-mode chruby centered-cursor-mode bundler browse-at-remote auto-yasnippet auto-highlight-symbol auto-compile aggressive-indent ace-jump-helm-line ac-ispell))))
+    (doom-modeline ace-window swiper flycheck avy visual-fill-column hydra yasnippet-snippets yaml-mode ws-butler writeroom-mode winum which-key web-mode web-beautify volatile-highlights vmd-mode vi-tilde-fringe uuidgen use-package toc-org tagedit symon string-inflection spaceline-all-the-icons smeargle slim-mode shrink-path seeing-is-believing scss-mode sass-mode rvm ruby-tools ruby-test-mode ruby-refactor ruby-hash-syntax rubocop rspec-mode robe restart-emacs rbenv rake rainbow-delimiters pug-mode prettier-js popwin persp-mode password-generator paradox overseer origami orgit org-projectile org-present org-pomodoro org-mime org-download org-bullets org-brain open-junk-file neotree nameless move-text mmm-mode minitest markdown-toc magithub magit-svn magit-gitflow macrostep lorem-ipsum livid-mode link-hint json-navigator js2-refactor js-doc ivy indent-guide impatient-mode hungry-delete hl-todo highlight-parentheses highlight-numbers highlight-indentation helm-xref helm-themes helm-swoop helm-purpose helm-projectile helm-org-rifle helm-mode-manager helm-make helm-gitignore helm-git-grep helm-flx helm-descbinds helm-css-scss helm-company helm-c-yasnippet helm-ag google-translate golden-ratio gnuplot gitignore-templates github-search github-clone gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-gutter-fringe git-gutter-fringe+ gist gh-md fuzzy forge font-lock+ flycheck-pos-tip flx-ido fill-column-indicator fancy-battery eyebrowse expand-region evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-snipe evil-org evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-magit evil-lisp-state evil-lion evil-indent-plus evil-iedit-state evil-goggles evil-exchange evil-escape evil-ediff evil-cleverparens evil-args evil-anzu eval-sexp-fu enh-ruby-mode emojify emoji-cheat-sheet-plus emmet-mode elisp-slime-nav eldoc-eval editorconfig dumb-jump drag-stuff dotenv-mode doom-themes dockerfile-mode docker diminish diff-hl define-word csv-mode counsel-projectile company-web company-tern company-statistics company-emoji column-enforce-mode clean-aindent-mode chruby centered-cursor-mode bundler browse-at-remote auto-yasnippet auto-highlight-symbol auto-compile aggressive-indent ace-link ace-jump-helm-line ac-ispell))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
