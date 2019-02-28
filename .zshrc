@@ -91,8 +91,7 @@ source $ZSH/oh-my-zsh.sh
 eval "$(rbenv init -)"
 eval "$(direnv hook zsh)"
 
-alias ls='colorls --sort-dirs'
-alias lc='colorls --tree'
+alias ls="exa"
 alias e='emacsclient -t'
 alias gb='checkout'
 alias rake='noglob rake'
