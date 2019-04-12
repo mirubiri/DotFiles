@@ -49,7 +49,7 @@ export ZSH=~/.oh-my-zsh
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 
-plugins=(zsh-completions fast-syntax-highlighting zsh-autosuggestions brew colored-man-pages docker docker-compose bundler alias-tips git git-extras z)
+plugins=(fzf zsh-completions fast-syntax-highlighting zsh-autosuggestions brew colored-man-pages docker docker-compose bundler alias-tips git git-extras z)
 
 # User configuration
 
@@ -79,11 +79,6 @@ plugins=(zsh-completions fast-syntax-highlighting zsh-autosuggestions brew color
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-SPACESHIP_PROMPT_ADD_NEWLINE="true"
-SPACESHIP_CHAR_SYMBOL=" \uf0e7 "
-SPACESHIP_CHAR_PREFIX="\uf296"
-SPACESHIP_CHAR_SUFFIX=(" ")
-SPACESHIP_PROMPT_FIRST_PREFIX_SHOW="true"
 
 autoload -U compinit -u && compinit -u
 source $ZSH/oh-my-zsh.sh
@@ -98,6 +93,10 @@ alias rake='noglob rake'
 export EDITOR="emacsclient -t"
 export VISUAL="emacsclient -t"
 
+export FZF_DEFAULT_COMMAND="rg --files --hidden --no-messages"
+export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+export FZF_BASE="/usr/local/bin/"
+export FZF_DEFAULT_OPTS='--height 10 --layout=reverse --border'
 eval "$(hub alias -s)"
 export PATH="/usr/local/opt/mysql-client/bin:$PATH"
 export PATH=$PATH:$HOME/bin:/usr/local/bin:/usr/local/sbin
@@ -106,3 +105,4 @@ export PATH=$PATH:~/Library/Python/3.7/bin
 chpwd() {
     ls
 }
+
