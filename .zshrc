@@ -51,58 +51,52 @@ export ZSH=~/.oh-my-zsh
 
 plugins=(fzf zsh-completions fast-syntax-highlighting zsh-autosuggestions brew colored-man-pages docker docker-compose bundler alias-tips git git-extras z)
 
-# User configuration
-
-# export MANPATH="/usr/local/man:$MANPATH"
-
-# You may need to manually set your language environment
-# export LANG=en_US.UTF-8
-
-# Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='vim'
-# else
-#   export EDITOR='mvim'
-# fi
-
-# Compilation flags
-# export ARCHFLAGS="-arch x86_64"
-
-# ssh
-# export SSH_KEY_PATH="~/.ssh/rsa_id"
-
-# Set personal aliases, overriding those provided by oh-my-zsh libs,
-# plugins, and themes. Aliases can be placed here, though oh-my-zsh
-# users are encouraged to define aliases within the ZSH_CUSTOM folder.
-# For a full list of active aliases, run `alias`.
-#
-# Example aliases
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
-
+#  Adittional Zsh autocompletions 
+# --------------------------------
 autoload -U compinit -u && compinit -u
+
+#  Oh-My-Zsh entry point
+# -----------------------
 source $ZSH/oh-my-zsh.sh
 
-eval "$(rbenv init -)"
-eval "$(direnv hook zsh)"
-
-alias ls="exa"
-alias e='emacsclient -t'
-alias gb='checkout'
-alias rake='noglob rake'
-export EDITOR="emacsclient -t"
-export VISUAL="emacsclient -t"
-
+#  FZF Setup
+# -----------
 export FZF_DEFAULT_COMMAND="rg --files --hidden --no-messages"
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 export FZF_BASE="/usr/local/bin/"
 export FZF_DEFAULT_OPTS='--height 10 --layout=reverse --border'
+
+fzf-gb() {
+  local branches branch
+  branches=$(git branch --all | grep -v HEAD) &&
+  branch=$(echo "$branches" |
+           fzf-tmux -d $(( 2 + $(wc -l <<< "$branches") )) +m) &&
+  git checkout $(echo "$branch" | sed "s/.* //" | sed "s#remotes/[^/]*/##")
+}
+
+#  Development tools
+# -------------------
+eval "$(rbenv init -)"
+eval "$(direnv hook zsh)"
 eval "$(hub alias -s)"
+
+#  Shell config
+# --------------
+export EDITOR="emacsclient -t"
+export VISUAL="emacsclient -t"
 export PATH="/usr/local/opt/mysql-client/bin:$PATH"
 export PATH=$PATH:$HOME/bin:/usr/local/bin:/usr/local/sbin
 export PATH=$PATH:~/Library/Python/3.7/bin
 
+#  Aliases
+# ---------
+alias gb="fzf-gb"
+alias ls="exa"
+alias e="emacsclient -t"
+alias rake="noglob rake"
+
+#  Shell Hooks
+# -------------
 chpwd() {
     ls
 }
-
