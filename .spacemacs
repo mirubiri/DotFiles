@@ -478,9 +478,13 @@ This function is called at the very end of Spacemacs startup, after layer
 configuration.
 Put your configuration code here, except for variables that should be set
 before packages are loaded."
-  ;; Temporal fix to solve goto-definition
-  (setq spacemacs-default-jump-handlers
-        (remove 'evil-goto-definition spacemacs-default-jump-handlers))
+
+  ;; Workaround to enable easy templates in org mode
+  (require 'org-tempo)
+  
+  ;; Workaround for goto-definition
+  ;; (setq spacemacs-default-jump-handlers
+  ;;      (remove 'evil-goto-definition spacemacs-default-jump-handlers))
 
 
   ;; Disable automatic UTF-8 comment tag on files with some non-ASCII character
