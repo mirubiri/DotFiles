@@ -1,4 +1,4 @@
-#  1. Path to oh-my-zsh installation
+#  Path to oh-my-zsh installation
 # -----------------------------------
 export ZSH=~/.oh-my-zsh
 
@@ -23,12 +23,12 @@ plugins=(
 )
 
 
-#  2. Additional Zsh autocompletions
+#  Additional Zsh autocompletions
 # -----------------------------------
 autoload -U compinit -u && compinit -u
 
 
-#  3. Oh-My-Zsh entry point
+#  Oh-My-Zsh entry point
 # --------------------------
 source $ZSH/oh-my-zsh.sh
 
@@ -54,7 +54,7 @@ fzf-gbd() {
         echo $branches | xargs git branch -D
 }
 
-# FZF: Killig processes
+# FZF: Killing processes
 fzf-kill() {
     local pids
     pids=$(ps -ef | fzf -m --header-lines=1 | awk '{print $2}') &&
