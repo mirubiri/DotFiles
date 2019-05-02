@@ -77,6 +77,13 @@ export PATH=$PATH:$HOME/bin:/usr/local/bin:/usr/local/sbin
 export PATH=$PATH:~/Library/Python/3.7/bin
 
 
+#  Spaceship
+# -----------
+export SPACESHIP_CHAR_SUFFIX=" "
+export SPACESHIP_CHAR_SYMBOL="\uf534"
+export SPACESHIP_CHAR_COLOR_SUCCESS="white"
+export SPACESHIP_PROMPT_SEPARATE_LINE="true"
+
 #  Aliases
 # ---------
 alias cat="bat"
