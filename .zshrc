@@ -70,6 +70,7 @@ eval "$(hub alias -s)"
 
 #  Shell config
 # --------------
+export DIRENV_LOG_FORMAT=
 export EDITOR="emacsclient -t"
 export VISUAL="emacsclient -t"
 export PATH="/usr/local/opt/mysql-client/bin:$PATH"
