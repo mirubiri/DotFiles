@@ -94,7 +94,7 @@ alias gbd="fzf-gbd"
 alias k="fzf-kill"
 alias ls="exa"
 alias rake="noglob rake"
-
+alias kafka_monitor="java --add-opens=java.base/sun.nio.ch=ALL-UNNAMED -jar ~/kafdrop-3.8.0.jar --zookeeper.connect=localhost:2181 --schemaregistry.connect=http://localhost:9090 --message.format=AVRO"
 
 #  Shell Hooks
 # -------------
