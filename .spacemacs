@@ -38,14 +38,11 @@ This function should only modify configuration layer settings."
      ;; Uncomment some layer names and press `SPC f e R' (Vim style) or
      ;; `M-m f e R' (Emacs style) to install them.
      ;; ----------------------------------------------------------------
-     confluence
-     copy-as-format
      (deft :variables
        deft-auto-save-interval 10.0)
      (auto-completion :variables
                       auto-completion-enable-snippets-in-popup t)
      treemacs
-     docker
      emacs-lisp
      emoji
      evil-snipe
@@ -214,7 +211,7 @@ It should only modify the values of Spacemacs settings."
    ;; refer to the DOCUMENTATION.org for more info on how to create your own
    ;; spaceline theme. Value can be a symbol or list with additional properties.
    ;; (default '(spacemacs :separator wave :separator-scale 1.5))
-   dotspacemacs-mode-line-theme '(spacemacs :separator wave :separator-scale 1.5)
+   dotspacemacs-mode-line-theme '(doom)
 
    ;; If non-nil the cursor color matches the state color in GUI Emacs.
    ;; (default t)
@@ -316,7 +313,7 @@ It should only modify the values of Spacemacs settings."
 
    ;; If non-nil the frame is fullscreen when Emacs starts up. (default nil)
    ;; (Emacs 24.4+ only)
-   dotspacemacs-fullscreen-at-startup t
+   dotspacemacs-fullscreen-at-startup nil
 
    ;; If non-nil `spacemacs/toggle-fullscreen' will not use native fullscreen.
    ;; Use to disable fullscreen animations in OSX. (default nil)
@@ -495,9 +492,6 @@ before packages are loaded."
   ;; Open all org docs unfolded
   (setq org-startup-folded nil)
 
-  ;; Api Blueprint Mode support
-  (add-to-list 'auto-mode-alist '("\\.apib\\'" . apib-mode))
-
   ;; Workaround to enable easy templates in org mode
   (require 'org-tempo)
 
@@ -511,12 +505,11 @@ before packages are loaded."
   (setq enh-ruby-add-encoding-comment-on-save nil)
   (setq enh-ruby-encoding-map nil)
 
-  ;; Treemacs settings
+  ;; Theme settings
+  (setq doom-themes-treemacs-theme "doom-colors")
+  (setq doom-modeline-vcs-max-length 1000)
+  (setq doom-modeline-modal-icon 't)
   (doom-themes-treemacs-config)
-
-  ;; Neotree settings
-  (setq neo-autorefresh nil)
-  (setq neo-theme 'icons)
 
   ;; Makes full names appear in helm buffers
   (setq helm-buffer-max-length nil)
@@ -543,6 +536,8 @@ before packages are loaded."
   (define-key evil-normal-state-map (kbd "S-<down>") 'scroll-up)
   (define-key evil-normal-state-map (kbd "-") 'evil-avy-goto-word-or-subword-1)
 
+  (spacemacs/set-leader-keys "bD" 'spacemacs/kill-other-buffers)
+
   ;; Automatic Stuff
   (setq auto-revert-interval 1)
   ;; (setq auto-save-visited-interval 2)
@@ -562,9 +557,10 @@ This function is called at the very end of Spacemacs initialization."
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(mac-command-modifier (quote super))
  '(package-selected-packages
    (quote
-    (sqlup-mode sql-indent apib-mode org-jira writeroom-mode robe helm-xref forge dumb-jump doom-themes doom-modeline browse-at-remote ace-link counsel swiper ivy flycheck helm magit transient lv all-the-icons hydra yaml-mode ws-butler winum which-key web-mode web-beautify volatile-highlights vmd-mode visual-fill-column vi-tilde-fringe uuidgen use-package toc-org tagedit symon string-inflection spaceline-all-the-icons smeargle slim-mode shrink-path seeing-is-believing scss-mode sass-mode rvm ruby-tools ruby-test-mode ruby-refactor ruby-hash-syntax rubocop rspec-mode restart-emacs rbenv rake rainbow-delimiters pug-mode prettier-js popwin persp-mode password-generator paradox overseer origami orgit org-projectile org-present org-pomodoro org-mime org-download org-bullets org-brain open-junk-file neotree nameless move-text mmm-mode minitest markdown-toc magithub magit-svn magit-gitflow macrostep lorem-ipsum livid-mode link-hint json-navigator js2-refactor js-doc indent-guide impatient-mode hungry-delete hl-todo highlight-parentheses highlight-numbers highlight-indentation helm-themes helm-swoop helm-purpose helm-projectile helm-org-rifle helm-mode-manager helm-make helm-gitignore helm-git-grep helm-flx helm-descbinds helm-css-scss helm-company helm-c-yasnippet helm-ag google-translate golden-ratio gnuplot gitignore-templates github-search github-clone gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-gutter-fringe git-gutter-fringe+ gist gh-md fuzzy font-lock+ flycheck-pos-tip flx-ido fill-column-indicator fancy-battery eyebrowse expand-region evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-snipe evil-org evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-magit evil-lisp-state evil-lion evil-indent-plus evil-iedit-state evil-goggles evil-exchange evil-escape evil-ediff evil-cleverparens evil-args evil-anzu eval-sexp-fu enh-ruby-mode emojify emoji-cheat-sheet-plus emmet-mode elisp-slime-nav eldoc-eval editorconfig drag-stuff dotenv-mode dockerfile-mode docker diminish diff-hl define-word csv-mode counsel-projectile company-web company-tern company-statistics company-emoji column-enforce-mode closql clean-aindent-mode chruby centered-cursor-mode bundler auto-yasnippet auto-highlight-symbol auto-compile aggressive-indent ace-window ace-jump-helm-line ac-ispell)))
+    (ansi package-build shut-up epl git commander f dash s yapfify utop tuareg caml pytest pyenv-mode py-isort pippel pipenv pyvenv pip-requirements ocp-indent ob-elixir mvn meghanada maven-test-mode lsp-python-ms lsp-java live-py-mode importmagic epc ctable concurrent deferred helm-pydoc groovy-mode groovy-imports pcache gradle-mode flycheck-ocaml merlin flycheck-mix flycheck-credo dune cython-mode company-anaconda blacken auto-complete-rst anaconda-mode pythonic alchemist elixir-mode sqlup-mode sql-indent apib-mode org-jira writeroom-mode robe helm-xref forge dumb-jump doom-themes doom-modeline browse-at-remote ace-link counsel swiper ivy flycheck helm magit transient lv all-the-icons hydra yaml-mode ws-butler winum which-key web-mode web-beautify volatile-highlights vmd-mode visual-fill-column vi-tilde-fringe uuidgen use-package toc-org tagedit symon string-inflection spaceline-all-the-icons smeargle slim-mode shrink-path seeing-is-believing scss-mode sass-mode rvm ruby-tools ruby-test-mode ruby-refactor ruby-hash-syntax rubocop rspec-mode restart-emacs rbenv rake rainbow-delimiters pug-mode prettier-js popwin persp-mode password-generator paradox overseer origami orgit org-projectile org-present org-pomodoro org-mime org-download org-bullets org-brain open-junk-file treemacs nameless move-text mmm-mode minitest markdown-toc magithub magit-svn magit-gitflow macrostep lorem-ipsum livid-mode link-hint json-navigator js2-refactor js-doc indent-guide impatient-mode hungry-delete hl-todo highlight-parentheses highlight-numbers highlight-indentation helm-themes helm-swoop helm-purpose helm-projectile helm-org-rifle helm-mode-manager helm-make helm-gitignore helm-git-grep helm-flx helm-descbinds helm-css-scss helm-company helm-c-yasnippet helm-ag google-translate golden-ratio gnuplot gitignore-templates github-search github-clone gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-gutter-fringe git-gutter-fringe+ gist gh-md fuzzy font-lock+ flycheck-pos-tip flx-ido fill-column-indicator fancy-battery eyebrowse expand-region evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-snipe evil-org evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-magit evil-lisp-state evil-lion evil-indent-plus evil-iedit-state evil-goggles evil-exchange evil-escape evil-ediff evil-cleverparens evil-args evil-anzu eval-sexp-fu enh-ruby-mode emojify emoji-cheat-sheet-plus emmet-mode elisp-slime-nav eldoc-eval editorconfig drag-stuff dotenv-mode dockerfile-mode docker diminish diff-hl define-word csv-mode counsel-projectile company-web company-tern company-statistics company-emoji column-enforce-mode closql clean-aindent-mode chruby centered-cursor-mode bundler auto-yasnippet auto-highlight-symbol auto-compile aggressive-indent ace-window ace-jump-helm-line ac-ispell)))
  '(paradox-github-token t))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
