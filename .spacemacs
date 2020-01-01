@@ -534,7 +534,11 @@ before packages are loaded."
   (define-key evil-normal-state-map (kbd "s-<down>") 'drag-stuff-down)
   (define-key evil-normal-state-map (kbd "S-<up>") 'scroll-down)
   (define-key evil-normal-state-map (kbd "S-<down>") 'scroll-up)
-  (define-key evil-normal-state-map (kbd "-") 'evil-avy-goto-word-or-subword-1)
+
+  (define-key evil-normal-state-map (kbd "L") 'projectile-next-project-buffer)
+  (define-key evil-normal-state-map (kbd "H") 'projectile-previous-project-buffer)
+  (define-key evil-normal-state-map (kbd "S-<right>") 'projectile-next-project-buffer)
+  (define-key evil-normal-state-map (kbd "S-<left>") 'projectile-previous-project-buffer)
 
   (spacemacs/set-leader-keys "bD" 'spacemacs/kill-other-buffers)
 
