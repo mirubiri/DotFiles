@@ -61,6 +61,11 @@ fzf-kill() {
         echo $pids | xargs kill -9
 }
 
+bindkey -r '^t'
+bindkey -r '^r'
+bindkey '^f' fzf-file-widget
+bindkey '^h' fzf-history-widget
+
 #  Development tools
 # -------------------
 eval "$(rbenv init -)"
