@@ -78,7 +78,8 @@ eval "$(hub alias -s)"
 export DIRENV_LOG_FORMAT=
 export EDITOR="emacsclient -t"
 export VISUAL="emacsclient -t"
-export PATH="/usr/local/opt/mysql-client@5.7/bin:$PATH"
+export PATH="/usr/local/opt/mariadb/bin:$PATH"
+# export PATH="/usr/local/opt/mysql-client@5.7/bin:$PATH"
 export PATH=$PATH:$HOME/bin:/usr/local/bin:/usr/local/sbin
 export PATH=$PATH:~/Library/Python/3.7/bin
 
