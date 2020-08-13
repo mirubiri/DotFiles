@@ -58,7 +58,7 @@ This function should only modify configuration layer settings."
      (org :variables
           org-want-todo-bindings t)
      (ruby :variables
-           ruby-version-manager 'rbenv
+           ruby-version-manager nil
            ruby-test-runner 'rspec
            ruby-enable-enh-ruby-mode t)
      syntax-checking
@@ -492,7 +492,13 @@ This function defines the environment variables for your Emacs session. By
 default it calls `spacemacs/load-spacemacs-env' which loads the environment
 variables declared in `~/.spacemacs.env' or `~/.spacemacs.d/.spacemacs.env'.
 See the header of this file for more information."
-  (spacemacs/load-spacemacs-env))
+
+  ;; Fixes a bug in which PATH variable is not loaded from .spacemacs.env
+  ;; NOTE: Remember to remove the double PATH variable from .spacemacs.env when first created
+  (setq exec-path nil)
+
+  (spacemacs/load-spacemacs-env)
+  )
 
 (defun dotspacemacs/user-init ()
   "Initialization for user code:
