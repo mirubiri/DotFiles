@@ -20,6 +20,7 @@ plugins=(
     z
     zsh-autosuggestions #
     zsh-completions #
+		fzf-tab #
 )
 
 
@@ -70,14 +71,18 @@ bindkey '^h' fzf-history-widget
 # -------------------
 eval "$(direnv hook zsh)"
 eval "$(hub alias -s)"
+
+# ASDF version manager setup
 . /usr/local/opt/asdf/asdf.sh
+
+# ASDF Plugins
 . ~/.asdf/plugins/java/set-java-home.zsh
 
 #  Shell config
 # --------------
 export DIRENV_LOG_FORMAT=
-export EDITOR="emacsclient -t"
-export VISUAL="emacsclient -t"
+export EDITOR="vim"
+export VISUAL="vim"
 export PATH=$PATH:$HOME/bin:/usr/local/bin:/usr/local/sbin
 export PATH=$PATH:~/Library/Python/3.7/bin
 
@@ -91,11 +96,9 @@ export SPACESHIP_PROMPT_SEPARATE_LINE="true"
 #  Aliases
 # ---------
 alias cat="bat"
-alias e="emacsclient -t"
 alias gb="fzf-gb"
 alias gbd="fzf-gbd"
 alias k="fzf-kill"
-alias ls="exa"
 alias rake="noglob rake"
 alias kafka_monitor="java --add-opens=java.base/sun.nio.ch=ALL-UNNAMED -jar ~/kafdrop/kafdrop-3.8.0.jar --zookeeper.connect=localhost:2181 --schemaregistry.connect=http://localhost:9090 --message.format=AVRO"
 alias dl="lazydocker"
