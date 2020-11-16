@@ -32,7 +32,7 @@ This function should only modify configuration layer settings."
 
    ;; List of configuration layers to load.
    dotspacemacs-configuration-layers
-   '(
+   '(sql
      ;; ----------------------------------------------------------------
      ;; Example of useful layers you may want to use right away.
      ;; Uncomment some layer names and press `SPC f e R' (Vim style) or
@@ -42,6 +42,7 @@ This function should only modify configuration layer settings."
        deft-auto-save-interval 10.0)
      (auto-completion :variables
                       auto-completion-enable-snippets-in-popup t)
+     docker
      emacs-lisp
      emoji
      evil-snipe
@@ -118,7 +119,7 @@ It should only modify the values of Spacemacs settings."
    ;; To load it when starting Emacs add the parameter `--dump-file'
    ;; when invoking Emacs 27.1 executable on the command line, for instance:
    ;;   ./emacs --dump-file=$HOME/.emacs.d/.cache/dumps/spacemacs-27.1.pdmp
-   ;; (default spacemacs-27.1.pdmp)
+   ;; (default (format "spacemacs-%s.pdmp" emacs-version))
    dotspacemacs-emacs-dumper-dump-file (format "spacemacs-%s.pdmp" emacs-version)
 
    ;; If non-nil ELPA repositories are contacted via HTTPS whenever it's
@@ -148,7 +149,9 @@ It should only modify the values of Spacemacs settings."
 
    ;; If non-nil then Spacelpa repository is the primary source to install
    ;; a locked version of packages. If nil then Spacemacs will install the
-   ;; latest version of packages from MELPA. (default nil)
+   ;; latest version of packages from MELPA. Spacelpa is currently in
+   ;; experimental state please use only for testing purposes.
+   ;; (default nil)
    dotspacemacs-use-spacelpa nil
 
    ;; If non-nil then verify the signature for downloaded Spacelpa archives.
@@ -385,11 +388,11 @@ It should only modify the values of Spacemacs settings."
    ;;   :size-limit-kb 1000)
    ;; When used in a plist, `visual' takes precedence over `relative'.
    ;; (default nil)
-   dotspacemacs-line-numbers `t
+   dotspacemacs-line-numbers 'visual
 
-   ;; Code folding method. Possible values are `evil' and `origami'.
+   ;; Code folding method. Possible values are `evil', `origami' and `vimish'.
    ;; (default 'evil)
-   dotspacemacs-folding-method 'evil
+   dotspacemacs-folding-method 'origami
 
    ;; If non-nil `smartparens-strict-mode' will be enabled in programming modes.
    ;; (default nil)
@@ -507,6 +510,7 @@ If you are unsure, try setting them in `dotspacemacs/user-config' first."
 This function is called only while dumping Spacemacs configuration. You can
 `require' or `load' the libraries of your choice that will be included in the
 dump."
+
   )
 
 (defun dotspacemacs/user-config ()
@@ -518,6 +522,11 @@ before packages are loaded."
 
   ;;  General configs
   ;; -----------------
+
+  ;; IMPORTANT
+  ;; Create an automator app with this snippet
+  ;;/usr/local/opt/emacs-mac/Emacs.app/Contents/MacOS/Emacs --dump-file=/Users/alex/.emacs.d/.cache/dumps/spacemacs-27.1.pdmp &>/dev/null &
+  ;; Don't "Keep in dock", copy the script from Applications to the Dock
 
   ;; Open all org docs unfolded
   (setq org-startup-folded nil)
@@ -581,6 +590,7 @@ before packages are loaded."
   (setq create-lockfiles nil)
 
   (global-company-mode)
+
   )
 ;; Do not write anything past this comment. This is where Emacs will
 ;; auto-generate custom variable definitions.
