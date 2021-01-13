@@ -90,16 +90,16 @@ nmap k gk
 "
 
 "-- Leader Shortcuts --
-let mapleader = "," 
+let mapleader = " " 
 nmap <leader>u :GundoToggle<CR>
 nmap <leader>s :mksession<CR> "save session
-nmap <Leader>t :NERDTreeToggle<cr>
+nmap <Leader>pt :NERDTreeToggle<cr>
 nmap <Leader>w :w<cr>
 nmap <Leader>wq :wq<cr>
 nmap <Leader>q :q!<cr>
-nmap <Leader>ev :tabedit $MYVIMRC<cr>
+nmap <Leader>fed :tabedit $MYVIMRC<cr>
 nmap <Leader><Space> :TagbarToggle<cr>
-nmap <Leader>p :CtrlP<cr>
+nmap <Leader>sp :CtrlP<cr>
 
 augroup autosourcing
   autocmd!
