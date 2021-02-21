@@ -1,10 +1,11 @@
+#
 #  Path to oh-my-zsh installation
 # -----------------------------------
 export ZSH=~/.oh-my-zsh
 
 #  Theme & Plugins
 # -----------------
-ZSH_THEME="spaceship" #
+ZSH_THEME="powerlevel10k/powerlevel10k" #
 
 plugins=(
     alias-tips
@@ -13,33 +14,31 @@ plugins=(
     colored-man-pages
     docker
     docker-compose
-    fast-syntax-highlighting #
     fzf
     git
     git-extras
     z
-    zsh-autosuggestions #
-    zsh-completions #
 		fzf-tab #
+    fast-syntax-highlighting #
 )
 
-
-#  Additional Zsh autocompletions
-# -----------------------------------
-autoload -U compinit -u && compinit -u
-
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
 
 #  Oh-My-Zsh entry point
 # --------------------------
 source $ZSH/oh-my-zsh.sh
-
 
 #  FZF Setup
 # -----------
 export FZF_DEFAULT_COMMAND="rg --files --hidden --no-messages"
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 export FZF_BASE="/usr/local/bin/"
-export FZF_DEFAULT_OPTS='--height 20 --layout=reverse --border'
+export FZF_DEFAULT_OPTS="--height 20 --layout=reverse --border"
 
 # FZF: Switching branches
 fzf-gb() {
@@ -78,37 +77,17 @@ eval "$(hub alias -s)"
 # ASDF Plugins
 . ~/.asdf/plugins/java/set-java-home.zsh
 
-# Setup Compiler paths for readline and openssl
-local READLINE_PATH="/usr/local/opt/readline"
-local OPENSSL_PATH="/usr/local/opt/openssl@1.1"
-export LDFLAGS="-L$READLINE_PATH/lib -L$OPENSSL_PATH/lib"
-export CPPFLAGS="-I$READLINE_PATH/include -I$OPENSSL_PATH/include"
-export PKG_CONFIG_PATH="$READLINE_PATH/lib/pkgconfig:$OPENSSL_PATH/lib/pkgconfig"
-
-# Use the OpenSSL from Homebrew instead of ruby-build
-# Note: the Homebrew version gets updated, the ruby-build version doesn't
-export RUBY_CONFIGURE_OPTS="--with-openssl-dir=$OPENSSL_PATH"
-
-# Place openssl@1.1 at the beginning of your PATH (preempt system libs)
-export PATH=$OPENSSL_PATH/bin:$PATH
-
 #  Shell config
 # --------------
 export DIRENV_LOG_FORMAT=
 export EDITOR="vim"
 export VISUAL="vim"
 export PATH=$PATH:$HOME/bin:/usr/local/bin:/usr/local/sbin
-export PATH=$PATH:~/Library/Python/3.7/bin
-
-#  Spaceship theme
-# -----------------
-export SPACESHIP_CHAR_SUFFIX=" "
-export SPACESHIP_CHAR_SYMBOL="\uf534"
-export SPACESHIP_CHAR_COLOR_SUCCESS="white"
-export SPACESHIP_PROMPT_SEPARATE_LINE="true"
+export PATH=$PATH:~/Library/Python/3.9/bin
 
 #  Aliases
 # ---------
+alias ls="lsd"
 alias cat="bat"
 alias gb="fzf-gb"
 alias gbd="fzf-gbd"
@@ -121,3 +100,5 @@ alias dl="lazydocker"
 # -------------
 chpwd() { ls }
 
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh

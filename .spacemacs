@@ -32,7 +32,8 @@ This function should only modify configuration layer settings."
 
    ;; List of configuration layers to load.
    dotspacemacs-configuration-layers
-   '(sql
+   '(javascript
+     sql
      ;; ----------------------------------------------------------------
      ;; Example of useful layers you may want to use right away.
      ;; Uncomment some layer names and press `SPC f e R' (Vim style) or
@@ -196,6 +197,10 @@ It should only modify the values of Spacemacs settings."
    ;; `recents' `recents-by-project' `bookmarks' `projects' `agenda' `todos'.
    ;; List sizes may be nil, in which case
    ;; `spacemacs-buffer-startup-lists-length' takes effect.
+   ;; The exceptional case is `recents-by-project', where list-type must be a
+   ;; pair of numbers, e.g. `(recents-by-project . (7 .  5))', where the first
+   ;; number is the project limit and the second the limit on the recent files
+   ;; within a project.
    dotspacemacs-startup-lists '((recents . 5)
                                 (projects . 7))
 
@@ -243,7 +248,7 @@ It should only modify the values of Spacemacs settings."
    ;; Default font or prioritized list of fonts. The `:size' can be specified as
    ;; a non-negative integer (pixel size), or a floating-point (point size).
    ;; Point size is recommended, because it's device independent. (default 10.0)
-   dotspacemacs-default-font '("Office Code Pro"
+   dotspacemacs-default-font '("Office Code Pro D"
                                :size 14.0
                                :weight normal
                                :width normal)
@@ -402,7 +407,7 @@ It should only modify the values of Spacemacs settings."
 
    ;; Code folding method. Possible values are `evil', `origami' and `vimish'.
    ;; (default 'evil)
-   dotspacemacs-folding-method 'origami
+   dotspacemacs-folding-method 'evil
 
    ;; If non-nil `smartparens-strict-mode' will be enabled in programming modes.
    ;; (default nil)
@@ -461,12 +466,15 @@ It should only modify the values of Spacemacs settings."
    ;; (default nil - same as frame-title-format)
    dotspacemacs-icon-title-format nil
 
+   ;; Show trailing whitespace (default t)
+   dotspacemacs-show-trailing-whitespace t
+
    ;; Delete whitespace while saving buffer. Possible values are `all'
    ;; to aggressively delete empty line and long sequences of whitespace,
    ;; `trailing' to delete only the whitespace at end of lines, `changed' to
    ;; delete only whitespace for changed lines or `nil' to disable cleanup.
    ;; (default nil)
-   dotspacemacs-whitespace-cleanup nil
+   dotspacemacs-whitespace-cleanup 'changed
 
    ;; If non nil activate `clean-aindent-mode' which tries to correct
    ;; virtual indentation of simple modes. This can interfer with mode specific
@@ -494,6 +502,9 @@ It should only modify the values of Spacemacs settings."
    ;; If nil the home buffer shows the full path of agenda items
    ;; and todos. If non nil only the file name is shown.
    dotspacemacs-home-shorten-agenda-source nil
+
+   ;; If non-nil then byte-compile some of Spacemacs files.
+   dotspacemacs-byte-compile 't
 
    ;; Avoid the use of the right mac option key as modifier
    mac-right-option-modifier nil
@@ -591,8 +602,16 @@ before packages are loaded."
   (define-key global-map (kbd "s-+") 'spacemacs/scale-up-font)
   (define-key global-map (kbd "s--") 'spacemacs/scale-down-font)
   (define-key global-map (kbd "s-0") 'spacemacs/reset-font-size)
-
   (spacemacs/set-leader-keys "bD" 'spacemacs/kill-other-buffers)
+
+  ;; Add new bindings to "open" menu
+  (spacemacs|spacebind
+   "Open user stuff"
+   :global
+   (("o" "Open"
+     ("d" spacemacs/deft "Open Deft")
+     )))
+
 
   ;; Automatic Stuff
   (setq auto-revert-interval 1)
@@ -614,9 +633,10 @@ This function is called at the very end of Spacemacs initialization."
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(evil-want-Y-yank-to-eol nil)
  '(mac-command-modifier 'super)
  '(package-selected-packages
-   '(ansi treemacs package-build shut-up epl git commander f dash s yapfify utop tuareg caml pytest pyenv-mode py-isort pippel pipenv pyvenv pip-requirements ocp-indent ob-elixir mvn meghanada maven-test-mode lsp-python-ms lsp-java live-py-mode importmagic epc ctable concurrent deferred helm-pydoc groovy-mode groovy-imports pcache gradle-mode flycheck-ocaml merlin flycheck-mix flycheck-credo dune cython-mode company-anaconda blacken auto-complete-rst anaconda-mode pythonic alchemist elixir-mode sqlup-mode sql-indent apib-mode org-jira writeroom-mode robe helm-xref forge dumb-jump doom-themes doom-modeline browse-at-remote ace-link counsel swiper ivy flycheck helm magit transient lv all-the-icons hydra yaml-mode ws-butler winum which-key web-mode web-beautify volatile-highlights vmd-mode visual-fill-column vi-tilde-fringe uuidgen use-package toc-org tagedit symon string-inflection spaceline-all-the-icons smeargle slim-mode shrink-path seeing-is-believing scss-mode sass-mode rvm ruby-tools ruby-test-mode ruby-refactor ruby-hash-syntax rubocop rspec-mode restart-emacs rbenv rake rainbow-delimiters pug-mode prettier-js popwin persp-mode password-generator paradox overseer origami orgit org-projectile org-present org-pomodoro org-mime org-download org-bullets org-brain open-junk-file nameless move-text mmm-mode minitest markdown-toc magithub magit-svn magit-gitflow macrostep lorem-ipsum livid-mode link-hint json-navigator js2-refactor js-doc indent-guide impatient-mode hungry-delete hl-todo highlight-parentheses highlight-numbers highlight-indentation helm-themes helm-swoop helm-purpose helm-projectile helm-org-rifle helm-mode-manager helm-make helm-gitignore helm-git-grep helm-flx helm-descbinds helm-css-scss helm-company helm-c-yasnippet helm-ag google-translate golden-ratio gnuplot gitignore-templates github-search github-clone gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-gutter-fringe git-gutter-fringe+ gist gh-md fuzzy font-lock+ flycheck-pos-tip flx-ido fill-column-indicator fancy-battery eyebrowse expand-region evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-snipe evil-org evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-magit evil-lisp-state evil-lion evil-indent-plus evil-iedit-state evil-goggles evil-exchange evil-escape evil-ediff evil-cleverparens evil-args evil-anzu eval-sexp-fu enh-ruby-mode emojify emoji-cheat-sheet-plus emmet-mode elisp-slime-nav eldoc-eval editorconfig drag-stuff dotenv-mode dockerfile-mode docker diminish diff-hl define-word csv-mode counsel-projectile company-web company-tern company-statistics company-emoji column-enforce-mode closql clean-aindent-mode chruby centered-cursor-mode bundler auto-yasnippet auto-highlight-symbol auto-compile aggressive-indent ace-window ace-jump-helm-line ac-ispell))
+   '(tern nodejs-repl skewer-mode multiple-cursors js2-mode import-js grizzl helm-gtags ggtags dap-mode lsp-treemacs bui lsp-mode dash-functional counsel-gtags add-node-modules-path ansi treemacs package-build shut-up epl git commander f dash s yapfify utop tuareg caml pytest pyenv-mode py-isort pippel pipenv pyvenv pip-requirements ocp-indent ob-elixir mvn meghanada maven-test-mode lsp-python-ms lsp-java live-py-mode importmagic epc ctable concurrent deferred helm-pydoc groovy-mode groovy-imports pcache gradle-mode flycheck-ocaml merlin flycheck-mix flycheck-credo dune cython-mode company-anaconda blacken auto-complete-rst anaconda-mode pythonic alchemist elixir-mode sqlup-mode sql-indent apib-mode org-jira writeroom-mode robe helm-xref forge dumb-jump doom-themes doom-modeline browse-at-remote ace-link counsel swiper ivy flycheck helm magit transient lv all-the-icons hydra yaml-mode ws-butler winum which-key web-mode web-beautify volatile-highlights vmd-mode visual-fill-column vi-tilde-fringe uuidgen use-package toc-org tagedit symon string-inflection spaceline-all-the-icons smeargle slim-mode shrink-path seeing-is-believing scss-mode sass-mode rvm ruby-tools ruby-test-mode ruby-refactor ruby-hash-syntax rubocop rspec-mode restart-emacs rbenv rake rainbow-delimiters pug-mode prettier-js popwin persp-mode password-generator paradox overseer origami orgit org-projectile org-present org-pomodoro org-mime org-download org-bullets org-brain open-junk-file nameless move-text mmm-mode minitest markdown-toc magithub magit-svn magit-gitflow macrostep lorem-ipsum livid-mode link-hint json-navigator js2-refactor js-doc indent-guide impatient-mode hungry-delete hl-todo highlight-parentheses highlight-numbers highlight-indentation helm-themes helm-swoop helm-purpose helm-projectile helm-org-rifle helm-mode-manager helm-make helm-gitignore helm-git-grep helm-flx helm-descbinds helm-css-scss helm-company helm-c-yasnippet helm-ag google-translate golden-ratio gnuplot gitignore-templates github-search github-clone gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-gutter-fringe git-gutter-fringe+ gist gh-md fuzzy font-lock+ flycheck-pos-tip flx-ido fill-column-indicator fancy-battery eyebrowse expand-region evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-snipe evil-org evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-magit evil-lisp-state evil-lion evil-indent-plus evil-iedit-state evil-goggles evil-exchange evil-escape evil-ediff evil-cleverparens evil-args evil-anzu eval-sexp-fu enh-ruby-mode emojify emoji-cheat-sheet-plus emmet-mode elisp-slime-nav eldoc-eval editorconfig drag-stuff dotenv-mode dockerfile-mode docker diminish diff-hl define-word csv-mode counsel-projectile company-web company-tern company-statistics company-emoji column-enforce-mode closql clean-aindent-mode chruby centered-cursor-mode bundler auto-yasnippet auto-highlight-symbol auto-compile aggressive-indent ace-window ace-jump-helm-line ac-ispell))
  '(paradox-github-token t))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
