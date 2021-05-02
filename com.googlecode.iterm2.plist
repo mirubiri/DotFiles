@@ -63157,6 +63157,8 @@
 	<true/>
 	<key>DimOnlyText</key>
 	<true/>
+	<key>DisableFullscreenTransparency</key>
+	<true/>
 	<key>DockIconTogglesWindow</key>
 	<true/>
 	<key>DoubleClickPerformsSmartSelection</key>
@@ -63665,7 +63667,7 @@
 			<key>Non-ASCII Ligatures</key>
 			<true/>
 			<key>Normal Font</key>
-			<string>FuraCodeNerdFontComplete-Regular 14</string>
+			<string>HackNerdFontComplete-Regular 14</string>
 			<key>Open Toolbelt</key>
 			<false/>
 			<key>Option Key Sends</key>

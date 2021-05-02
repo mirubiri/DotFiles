@@ -73,7 +73,6 @@ eval "$(hub alias -s)"
 
 # ASDF version manager setup
 . /usr/local/opt/asdf/asdf.sh
-. ~/.asdf/plugins/java/set-java-home.zsh
 
 #  Shell config
 # --------------
